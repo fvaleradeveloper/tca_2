@@ -1,0 +1,6 @@
+{
+  "name": "Total Calidad - Andean Logistics Intelligence",
+  "description": "Plataforma de inteligencia comercial, supervisión de rutas y control de distribución para consumo masivo en Lima, Perú.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
