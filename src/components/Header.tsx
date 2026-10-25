@@ -56,16 +56,20 @@ export const Header: React.FC<HeaderProps> = ({
   }[currentRole];
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 bg-[#f7f9fb]/90 backdrop-blur-md border-b border-[#e0e3e5] z-40 flex items-center justify-between px-6 lg:left-72">
+    <header className="fixed top-0 left-0 right-0 h-16 bg-[#f7f9fb]/90 backdrop-blur-md border-b border-[#e0e3e5] z-40 flex items-center justify-between px-6">
       {/* Left controls */}
       <div className="flex items-center gap-3 flex-wrap">
-        {/* Mobile hamburger */}
+        {/* Hamburger toggle */}
         <button
           onClick={onToggleSidebar}
-          className="lg:hidden w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#e6e8ea] text-[#45464d] transition-colors cursor-pointer"
-          title="Abrir menú"
+          className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#e6e8ea] text-[#45464d] transition-colors cursor-pointer"
+          title={sidebarOpen ? 'Cerrar menú' : 'Abrir menú'}
         >
-          <Menu className="w-5 h-5" />
+          {sidebarOpen ? (
+            <X className="w-5 h-5" />
+          ) : (
+            <Menu className="w-5 h-5" />
+          )}
         </button>
         {/* Role Selector with Security Level Indicator */}
         <div className="flex items-center bg-[#eceef0] border border-[#d8dadc] rounded-lg px-2 py-1 shadow-xs">

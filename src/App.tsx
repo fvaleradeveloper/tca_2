@@ -236,7 +236,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <div className="pl-0 lg:pl-72">
+      <div className={`transition-all duration-300 ${sidebarOpen ? 'pl-72' : 'pl-0'}`}>
         {/* Top Header */}
         <Header
           currentRole={currentRole}
@@ -247,6 +247,7 @@ export default function App() {
           onChangeZone={setSelectedZone}
           alerts={alerts}
           onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
+          sidebarOpen={sidebarOpen}
         />
 
         {/* View Routing with RBAC Gate */}
