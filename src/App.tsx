@@ -236,7 +236,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <div className={`transition-all duration-300 ${sidebarOpen ? 'pl-72' : 'pl-0'}`}>
+      <div className="pl-0">
         {/* Top Header */}
         <Header
           currentRole={currentRole}
@@ -251,7 +251,7 @@ export default function App() {
         />
 
         {/* View Routing with RBAC Gate */}
-        <main className="relative pt-20 px-8 max-w-7xl mx-auto">
+        <main className={`relative px-4 sm:px-8 max-w-7xl mx-auto ${sidebarOpen ? 'pt-24' : 'pt-20'}`}>
           {!access.allowed ? (
             <AccessDeniedCard
               currentRole={currentRole}
