@@ -8,7 +8,9 @@ import {
   MapPin, 
   FileSpreadsheet,
   Lock,
-  Shield
+  Shield,
+  Menu,
+  X,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -16,6 +18,8 @@ interface SidebarProps {
   onSelectView: (view: ScreenView) => void;
   onOpenPromptModal: () => void;
   currentRole: Role;
+  isOpen: boolean;
+  onToggleSidebar: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -23,6 +27,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onSelectView,
   onOpenPromptModal,
   currentRole,
+  isOpen,
+  onToggleSidebar,
 }) => {
   // Define permissions per role
   // Vendedor: 'vendedor', 'mapas'
@@ -82,7 +88,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-full w-72 bg-[#f2f4f6] border-r border-[#e0e3e5] z-50 flex flex-col pt-6 pb-6 select-none">
+    <aside className={`fixed left-0 top-0 h-full w-72 bg-[#f2f4f6] border-r border-[#e0e3e5] z-50 flex flex-col pt-6 pb-6 select-none transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'} lg:translate-x-0`}>
       {/* Brand Header */}
       <div className="px-6 mb-5 flex items-center justify-between">
         <div>
@@ -92,6 +98,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
           <p className="text-xs text-[#76777d] mt-0.5">Andean Logistics Intelligence</p>
         </div>
+        <button
+          onClick={onToggleSidebar}
+          className="lg:hidden p-1.5 rounded hover:bg-[#e6e8ea] text-[#45464d] transition-colors cursor-pointer"
+          title="Cerrar menú"
+        >
+          <X className="w-5 h-5" />
+        </button>
       </div>
 
       {/* Role Badge Pill */}
@@ -152,7 +165,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
           return (
             <button
               key={item.id}
-              onClick={() => onSelectView(item.id)}
+              onClick={() => {
+                onSelectView(item.id);
+                onToggleSidebar();
+              }}
               className={`flex items-center justify-between px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-left cursor-pointer ${
                 isActive
                   ? 'bg-[#131b2e] text-white font-semibold shadow-sm'

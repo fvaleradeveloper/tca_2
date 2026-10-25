@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Role, LimaZone, MesaAlert } from '../types';
-import { Bell, User, Check, X, ChevronDown, ShieldAlert, Shield } from 'lucide-react';
+import { Bell, User, Check, X, ChevronDown, ShieldAlert, Shield, Menu } from 'lucide-react';
 
 interface HeaderProps {
   currentRole: Role;
@@ -10,6 +10,7 @@ interface HeaderProps {
   selectedZone: LimaZone;
   onChangeZone: (zone: LimaZone) => void;
   alerts: MesaAlert[];
+  onToggleSidebar: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -20,6 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
   selectedZone,
   onChangeZone,
   alerts,
+  onToggleSidebar,
 }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [unreadCount, setUnreadCount] = useState(alerts.length);
@@ -54,9 +56,17 @@ export const Header: React.FC<HeaderProps> = ({
   }[currentRole];
 
   return (
-    <header className="fixed top-0 left-72 right-0 h-16 bg-[#f7f9fb]/90 backdrop-blur-md border-b border-[#e0e3e5] z-40 flex items-center justify-between px-6">
+    <header className="fixed top-0 left-0 right-0 h-16 bg-[#f7f9fb]/90 backdrop-blur-md border-b border-[#e0e3e5] z-40 flex items-center justify-between px-6 lg:left-72">
       {/* Left controls */}
       <div className="flex items-center gap-3 flex-wrap">
+        {/* Mobile hamburger */}
+        <button
+          onClick={onToggleSidebar}
+          className="lg:hidden w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#e6e8ea] text-[#45464d] transition-colors cursor-pointer"
+          title="Abrir menú"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
         {/* Role Selector with Security Level Indicator */}
         <div className="flex items-center bg-[#eceef0] border border-[#d8dadc] rounded-lg px-2 py-1 shadow-xs">
           <Shield className="w-3.5 h-3.5 text-slate-500 mr-1" />

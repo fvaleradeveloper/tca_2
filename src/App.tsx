@@ -132,6 +132,9 @@ export default function App() {
   const [selectedSupervisor, setSelectedSupervisor] = useState<string>('Carlos Mendoza (Líder Alfa)');
   const [selectedDate, setSelectedDate] = useState<string>('2023-10-24');
 
+  // Sidebar state
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   // Vendedores State
   const [vendedores, setVendedores] = useState<Vendedor[]>(INITIAL_VENDEDORES);
   const [alerts, setAlerts] = useState<MesaAlert[]>(INITIAL_ALERTS);
@@ -228,10 +231,12 @@ export default function App() {
         onSelectView={(view) => setCurrentView(view)}
         onOpenPromptModal={() => setIsPromptModalOpen(true)}
         currentRole={currentRole}
+        isOpen={sidebarOpen}
+        onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
       />
 
-      {/* Main Content Area (offset by 72px sidebar) */}
-      <div className="pl-72">
+      {/* Main Content Area */}
+      <div className="pl-0 lg:pl-72">
         {/* Top Header */}
         <Header
           currentRole={currentRole}
@@ -241,6 +246,7 @@ export default function App() {
           selectedZone={selectedZone}
           onChangeZone={setSelectedZone}
           alerts={alerts}
+          onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
         />
 
         {/* View Routing with RBAC Gate */}
@@ -318,6 +324,14 @@ export default function App() {
           )}
         </main>
       </div>
+
+      {/* Mobile sidebar overlay */}
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[45] lg:hidden"
+        />
+      )}
 
       {/* Modals */}
       <BroadcastModal
