@@ -7,8 +7,6 @@ import {
   Building2, 
   MapPin, 
   FileSpreadsheet,
-  Sparkles,
-  Zap,
   Lock,
   Shield
 } from 'lucide-react';
@@ -177,18 +175,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Bottom Master Prompt Access */}
       <div className="px-4 pt-4 border-t border-[#e0e3e5]">
-        <button
-          onClick={onOpenPromptModal}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-sm transition-colors cursor-pointer"
-        >
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Ver Prompt Maestro (con RBAC)</span>
-        </button>
-
         <div className="mt-3 flex items-center justify-between text-[11px] text-[#76777d] px-1">
           <span className="flex items-center gap-1">
-            <Zap className="w-3 h-3 text-emerald-600" />
-            <span>RBAC Activo v2.4</span>
+            <span>Lima, PE</span>
           </span>
           <span>Lima, PE</span>
         </div>
