@@ -11,6 +11,7 @@ interface HeaderProps {
   onChangeZone: (zone: LimaZone) => void;
   alerts: MesaAlert[];
   onToggleSidebar: () => void;
+  sidebarOpen: boolean;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -22,6 +23,7 @@ export const Header: React.FC<HeaderProps> = ({
   onChangeZone,
   alerts,
   onToggleSidebar,
+  sidebarOpen,
 }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [unreadCount, setUnreadCount] = useState(alerts.length);
