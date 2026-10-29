@@ -133,6 +133,25 @@ export default function App() {
   const [selectedSupervisor, setSelectedSupervisor] = useState<string>('Carlos Mendoza (Líder Alfa)');
   const [selectedDate, setSelectedDate] = useState<string>('2023-10-24');
 
+  // Theme state
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || saved === 'light') return saved;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return 'light';
+  });
+
+  React.useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') root.classList.add('dark');
+    else root.classList.remove('dark');
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
+
   // Sidebar state
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -225,7 +244,7 @@ export default function App() {
   const access = checkAccess(currentView);
 
   return (
-    <div className="min-h-screen bg-[#f7f9fb] text-[#191c1e] font-sans antialiased">
+    <div className="min-h-screen bg-[#f7f9fb] dark:bg-[#0f172a] text-[#191c1e] dark:text-[#f1f5f9] font-sans antialiased">
       {/* Sidebar Navigation */}
       <Sidebar
         currentView={currentView}
@@ -249,6 +268,8 @@ export default function App() {
           alerts={alerts}
           onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
           sidebarOpen={sidebarOpen}
+          theme={theme}
+          onToggleTheme={toggleTheme}
         />
 
         {/* View Routing with RBAC Gate */}

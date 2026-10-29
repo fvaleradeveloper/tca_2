@@ -34,7 +34,7 @@ export const BroadcastModal: React.FC<BroadcastModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4">
-      <div className="bg-white rounded-xl shadow-2xl border border-[#d8dadc] w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div className="bg-white dark:bg-[#1e293b] rounded-xl shadow-2xl border border-[#d8dadc] dark:border-[#475569] w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         <div className="flex items-center justify-between px-6 py-4 bg-[#131b2e] text-white">
           <div className="flex items-center gap-2.5">
             <Megaphone className="w-5 h-5 text-emerald-400" />
@@ -45,7 +45,7 @@ export const BroadcastModal: React.FC<BroadcastModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white p-1 rounded transition-colors"
+            className="text-slate-400 dark:text-slate-500 hover:text-white p-1 rounded transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -55,14 +55,14 @@ export const BroadcastModal: React.FC<BroadcastModalProps> = ({
           <div className="p-8 text-center flex flex-col items-center">
             <CheckCircle2 className="w-12 h-12 text-emerald-600 mb-3 animate-bounce" />
             <h4 className="font-bold text-base text-slate-900">¡Broadcast Enviado con Éxito!</h4>
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">
               12 vendedores recibieron la alerta sonora y notificación en sus terminales móviles.
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-1.5">
                 Nivel de Prioridad
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -72,7 +72,7 @@ export const BroadcastModal: React.FC<BroadcastModalProps> = ({
                   className={`py-2 px-3 rounded-lg text-xs font-semibold border flex items-center justify-center gap-2 transition-all ${
                     priority === 'urgente'
                       ? 'bg-red-50 border-red-500 text-red-700 font-bold shadow-xs'
-                      : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                      : 'bg-white dark:bg-[#1e293b] border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:bg-slate-800'
                   }`}
                 >
                   <span className="w-2 h-2 rounded-full bg-red-600"></span>
@@ -83,18 +83,18 @@ export const BroadcastModal: React.FC<BroadcastModalProps> = ({
                   onClick={() => setPriority('normal')}
                   className={`py-2 px-3 rounded-lg text-xs font-semibold border flex items-center justify-center gap-2 transition-all ${
                     priority === 'normal'
-                      ? 'bg-slate-100 border-slate-900 text-slate-900 font-bold shadow-xs'
-                      : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                      ? 'bg-slate-100 dark:bg-slate-700 border-slate-900 text-slate-900 font-bold shadow-xs'
+                      : 'bg-white dark:bg-[#1e293b] border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:bg-slate-800'
                   }`}
                 >
-                  <span className="w-2 h-2 rounded-full bg-slate-500"></span>
+                  <span className="w-2 h-2 rounded-full bg-slate-50 dark:bg-slate-8000"></span>
                   Aviso Informativo
                 </button>
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-1.5">
                 Mensaje a los Vendedores
               </label>
               <textarea
@@ -105,16 +105,16 @@ export const BroadcastModal: React.FC<BroadcastModalProps> = ({
                 className="w-full text-xs p-3 rounded-lg border border-slate-300 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 outline-none text-slate-800 resize-none"
                 required
               />
-              <p className="text-[11px] text-slate-400 mt-1">
+              <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">
                 Se enviará en tiempo real a todos los terminales activos de la mesa de trabajo.
               </p>
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+            <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-700">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                className="px-4 py-2 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:bg-slate-700 rounded-lg transition-colors"
               >
                 Cancelar
               </button>

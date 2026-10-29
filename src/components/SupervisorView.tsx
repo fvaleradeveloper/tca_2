@@ -93,26 +93,26 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
   return (
     <div className="flex flex-col w-full gap-6 pb-20">
       {/* Page Title & Control Bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#f2f4f6] border border-[#e0e3e5] p-6 rounded-xl shadow-xs">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-6 rounded-xl shadow-xs">
         <div className="flex flex-col gap-1">
-          <span className="text-xs uppercase tracking-wider text-[#45464d] font-bold">
+          <span className="text-xs uppercase tracking-wider text-[#45464d] dark:text-[#cbd5e1] font-bold">
             Supervisión Operativa
           </span>
-          <h1 className="text-2xl font-bold text-[#191c1e] tracking-tight">
+          <h1 className="text-2xl font-bold text-[#191c1e] dark:text-[#f1f5f9] tracking-tight">
             Mesa de Trabajo: Lima Norte - Alfa
           </h1>
-          <p className="text-sm text-[#45464d]">
+          <p className="text-sm text-[#45464d] dark:text-[#cbd5e1]">
             Control de rendimiento, cumplimiento de cuotas y asistencia en tiempo real.
           </p>
         </div>
 
         <div className="flex items-center gap-3 flex-wrap">
           <div className="flex flex-col">
-            <label className="text-[11px] font-semibold text-[#45464d] mb-1">Supervisor</label>
+            <label className="text-[11px] font-semibold text-[#45464d] dark:text-[#cbd5e1] mb-1">Supervisor</label>
             <select
               value={selectedSupervisor}
               onChange={(e) => onChangeSupervisor(e.target.value)}
-              className="bg-white border border-[#c6c6cd] rounded-lg px-3 py-1.5 text-xs font-semibold text-[#191c1e] outline-none shadow-2xs"
+              className="bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg px-3 py-1.5 text-xs font-semibold text-[#191c1e] dark:text-[#f1f5f9] outline-none shadow-2xs"
             >
               <option value="Carlos Mendoza (Líder Alfa)">Carlos Mendoza (Líder Alfa)</option>
               <option value="Ana Lucía Torres">Ana Lucía Torres</option>
@@ -121,11 +121,11 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
           </div>
 
           <div className="flex flex-col">
-            <label className="text-[11px] font-semibold text-[#45464d] mb-1">Zona</label>
+            <label className="text-[11px] font-semibold text-[#45464d] dark:text-[#cbd5e1] mb-1">Zona</label>
             <select
               value={selectedZone}
               onChange={(e) => onChangeZone(e.target.value)}
-              className="bg-white border border-[#c6c6cd] rounded-lg px-3 py-1.5 text-xs font-semibold text-[#191c1e] outline-none shadow-2xs"
+              className="bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg px-3 py-1.5 text-xs font-semibold text-[#191c1e] dark:text-[#f1f5f9] outline-none shadow-2xs"
             >
               <option value="Lima Norte">Lima Norte</option>
               <option value="Lima Sur">Lima Sur</option>
@@ -135,13 +135,13 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
           </div>
 
           <div className="flex flex-col">
-            <label className="text-[11px] font-semibold text-[#45464d] mb-1">Fecha</label>
+            <label className="text-[11px] font-semibold text-[#45464d] dark:text-[#cbd5e1] mb-1">Fecha</label>
             <div className="relative">
               <input
                 type="date"
                 value={selectedDate}
                 onChange={(e) => onChangeDate(e.target.value)}
-                className="bg-white border border-[#c6c6cd] rounded-lg px-3 py-1.5 text-xs font-semibold text-[#191c1e] outline-none shadow-2xs cursor-pointer"
+                className="bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg px-3 py-1.5 text-xs font-semibold text-[#191c1e] dark:text-[#f1f5f9] outline-none shadow-2xs cursor-pointer"
               />
             </div>
           </div>
@@ -151,9 +151,9 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
       {/* KPI Stats Cards (4 columns) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* KPI 1: Venta Total de Equipo */}
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-5 rounded-xl flex flex-col justify-between shadow-xs relative overflow-hidden">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-5 rounded-xl flex flex-col justify-between shadow-xs relative overflow-hidden">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-[#45464d] uppercase tracking-wide">
+            <span className="text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase tracking-wide">
               Venta Total de Equipo
             </span>
             <span className="bg-[#6cf8bb]/40 text-[#00714d] text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -161,22 +161,22 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
             </span>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold text-[#191c1e] tracking-tight font-mono">
+            <span className="text-3xl font-extrabold text-[#191c1e] dark:text-[#f1f5f9] tracking-tight font-mono">
               {formatSoles(148250)}
             </span>
-            <span className="text-xs text-[#45464d] font-medium">
+            <span className="text-xs text-[#45464d] dark:text-[#cbd5e1] font-medium">
               / Meta: {formatShortSoles(135000)}
             </span>
           </div>
-          <div className="w-full bg-[#e6e8ea] h-2 rounded-full mt-4 overflow-hidden">
+          <div className="w-full bg-[#e6e8ea] dark:bg-[#475569] h-2 rounded-full mt-4 overflow-hidden">
             <div className="bg-[#131b2e] h-full rounded-full transition-all duration-500" style={{ width: '100%' }}></div>
           </div>
         </div>
 
         {/* KPI 2: Cumplimiento Promedio */}
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-5 rounded-xl flex flex-col justify-between shadow-xs relative overflow-hidden">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-5 rounded-xl flex flex-col justify-between shadow-xs relative overflow-hidden">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-[#45464d] uppercase tracking-wide">
+            <span className="text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase tracking-wide">
               Cumplimiento Promedio
             </span>
             <span className="bg-[#6cf8bb]/40 text-[#00714d] text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -184,45 +184,45 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
             </span>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold text-[#191c1e] tracking-tight font-mono">
+            <span className="text-3xl font-extrabold text-[#191c1e] dark:text-[#f1f5f9] tracking-tight font-mono">
               94.8%
             </span>
             <span className="text-xs text-[#00714d] font-bold">
               +4.2% vs ayer
             </span>
           </div>
-          <div className="w-full bg-[#e6e8ea] h-2 rounded-full mt-4 overflow-hidden">
+          <div className="w-full bg-[#e6e8ea] dark:bg-[#475569] h-2 rounded-full mt-4 overflow-hidden">
             <div className="bg-[#006c49] h-full rounded-full transition-all duration-500" style={{ width: '94.8%' }}></div>
           </div>
         </div>
 
         {/* KPI 3: Vendedores Activos */}
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-5 rounded-xl flex flex-col justify-between shadow-xs relative overflow-hidden">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-5 rounded-xl flex flex-col justify-between shadow-xs relative overflow-hidden">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-[#45464d] uppercase tracking-wide">
+            <span className="text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase tracking-wide">
               Vendedores Activos
             </span>
-            <span className="bg-[#e6e8ea] text-[#191c1e] text-xs font-bold px-2 py-0.5 rounded-full">
+            <span className="bg-[#e6e8ea] dark:bg-[#475569] text-[#191c1e] dark:text-[#f1f5f9] text-xs font-bold px-2 py-0.5 rounded-full">
               12 / 12 Planilla
             </span>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold text-[#191c1e] tracking-tight font-mono">
+            <span className="text-3xl font-extrabold text-[#191c1e] dark:text-[#f1f5f9] tracking-tight font-mono">
               100%
             </span>
-            <span className="text-xs text-[#45464d]">
+            <span className="text-xs text-[#45464d] dark:text-[#cbd5e1]">
               Sin ausencias injustificadas
             </span>
           </div>
-          <div className="w-full bg-[#e6e8ea] h-2 rounded-full mt-4 overflow-hidden">
+          <div className="w-full bg-[#e6e8ea] dark:bg-[#475569] h-2 rounded-full mt-4 overflow-hidden">
             <div className="bg-[#131b2e] h-full rounded-full transition-all duration-500" style={{ width: '100%' }}></div>
           </div>
         </div>
 
         {/* KPI 4: Asistencia Diaria */}
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-5 rounded-xl flex flex-col justify-between shadow-xs relative overflow-hidden">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-5 rounded-xl flex flex-col justify-between shadow-xs relative overflow-hidden">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-[#45464d] uppercase tracking-wide">
+            <span className="text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase tracking-wide">
               Asistencia Diaria
             </span>
             <span className="bg-[#6cf8bb]/40 text-[#00714d] text-xs font-bold px-2 py-0.5 rounded-full">
@@ -230,14 +230,14 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
             </span>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold text-[#191c1e] tracking-tight font-mono">
+            <span className="text-3xl font-extrabold text-[#191c1e] dark:text-[#f1f5f9] tracking-tight font-mono">
               96.5%
             </span>
             <span className="text-xs text-[#00714d] font-bold">
               Supera el estándar
             </span>
           </div>
-          <div className="w-full bg-[#e6e8ea] h-2 rounded-full mt-4 overflow-hidden">
+          <div className="w-full bg-[#e6e8ea] dark:bg-[#475569] h-2 rounded-full mt-4 overflow-hidden">
             <div className="bg-[#006c49] h-full rounded-full transition-all duration-500" style={{ width: '96.5%' }}></div>
           </div>
         </div>
@@ -246,25 +246,25 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
       {/* Middle Row: Rendimiento por Marca / Categoría + Alertas de Mesa */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Card (col-span-2): Rendimiento por Marca y Vendedor */}
-        <div className="lg:col-span-2 bg-[#f2f4f6] border border-[#e0e3e5] p-6 rounded-xl flex flex-col justify-between shadow-xs">
+        <div className="lg:col-span-2 bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-6 rounded-xl flex flex-col justify-between shadow-xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
             <div>
-              <h2 className="text-lg font-bold text-[#191c1e]">
+              <h2 className="text-lg font-bold text-[#191c1e] dark:text-[#f1f5f9]">
                 {breakdownType === 'marcas' ? 'Rendimiento por Marca y Vendedor' : 'Rendimiento por Categoría y Vendedor'}
               </h2>
-              <p className="text-xs text-[#45464d] mt-0.5">
+              <p className="text-xs text-[#45464d] dark:text-[#cbd5e1] mt-0.5">
                 {breakdownType === 'marcas'
                   ? 'Distribución de ventas por líneas principales (Nestlé, Alicorp, Gloria)'
                   : 'Distribución por categorías estratégicas (Lácteos, Abarrotes, Golosinas)'}
               </p>
             </div>
-            <div className="flex items-center gap-1 bg-white border border-[#c6c6cd] p-0.5 rounded-lg self-start sm:self-auto">
+            <div className="flex items-center gap-1 bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] p-0.5 rounded-lg self-start sm:self-auto">
               <button
                 onClick={() => setBreakdownType('marcas')}
                 className={`px-3 py-1 text-xs font-bold rounded transition-all cursor-pointer ${
                   breakdownType === 'marcas'
                     ? 'bg-[#131b2e] text-white shadow-xs'
-                    : 'text-[#45464d] hover:text-[#191c1e]'
+                    : 'text-[#45464d] dark:text-[#cbd5e1] hover:text-[#191c1e] dark:text-[#f1f5f9]'
                 }`}
               >
                 Marcas
@@ -274,7 +274,7 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
                 className={`px-3 py-1 text-xs font-bold rounded transition-all cursor-pointer ${
                   breakdownType === 'categorias'
                     ? 'bg-[#131b2e] text-white shadow-xs'
-                    : 'text-[#45464d] hover:text-[#191c1e]'
+                    : 'text-[#45464d] dark:text-[#cbd5e1] hover:text-[#191c1e] dark:text-[#f1f5f9]'
                 }`}
               >
                 Categorías
@@ -294,10 +294,10 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
 
               return (
                 <div key={v.id} className="flex items-center gap-3">
-                  <span className="w-28 text-xs font-semibold text-[#191c1e] truncate">
+                  <span className="w-28 text-xs font-semibold text-[#191c1e] dark:text-[#f1f5f9] truncate">
                     {v.name}
                   </span>
-                  <div className="flex-1 flex h-6 bg-[#e6e8ea] rounded-full overflow-hidden gap-1 p-0.5">
+                  <div className="flex-1 flex h-6 bg-[#e6e8ea] dark:bg-[#475569] rounded-full overflow-hidden gap-1 p-0.5">
                     {/* Segment 1 */}
                     <div
                       className="bg-[#131b2e] h-full rounded-l-full relative group transition-all duration-300"
@@ -326,7 +326,7 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
                       </span>
                     </div>
                   </div>
-                  <span className="w-18 text-right text-xs font-bold text-[#191c1e] font-mono">
+                  <span className="w-18 text-right text-xs font-bold text-[#191c1e] dark:text-[#f1f5f9] font-mono">
                     {formatShortSoles(v.currentSales)}
                   </span>
                 </div>
@@ -335,7 +335,7 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
           </div>
 
           {/* Footer Legend */}
-          <div className="flex items-center justify-between pt-4 border-t border-[#e0e3e5] text-xs text-[#45464d] mt-2">
+          <div className="flex items-center justify-between pt-4 border-t border-[#e0e3e5] dark:border-[#334155] text-xs text-[#45464d] dark:text-[#cbd5e1] mt-2">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5 font-medium">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#131b2e]"></span>{' '}
@@ -350,15 +350,15 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
                 {breakdownType === 'marcas' ? 'Gloria' : 'Golosinas'}
               </span>
             </div>
-            <span className="text-[11px] text-[#76777d]">Actualizado hace 15 min</span>
+            <span className="text-[11px] text-[#76777d] dark:text-[#94a3b8]">Actualizado hace 15 min</span>
           </div>
         </div>
 
         {/* Right Card: Alertas de Mesa */}
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-6 rounded-xl flex flex-col justify-between shadow-xs">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-6 rounded-xl flex flex-col justify-between shadow-xs">
           <div>
-            <h2 className="text-lg font-bold text-[#191c1e] mb-0.5">Alertas de Mesa</h2>
-            <p className="text-xs text-[#45464d] mb-4">
+            <h2 className="text-lg font-bold text-[#191c1e] dark:text-[#f1f5f9] mb-0.5">Alertas de Mesa</h2>
+            <p className="text-xs text-[#45464d] dark:text-[#cbd5e1] mb-4">
               Incidencias y avisos urgentes para supervisión
             </p>
           </div>
@@ -398,13 +398,13 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
       </div>
 
       {/* Bottom Section: Ranking Detallado de Vendedores */}
-      <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-6 rounded-xl shadow-xs flex flex-col gap-5">
+      <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-6 rounded-xl shadow-xs flex flex-col gap-5">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h2 className="text-lg font-bold text-[#191c1e]">
+            <h2 className="text-lg font-bold text-[#191c1e] dark:text-[#f1f5f9]">
               Ranking Detallado de Vendedores
             </h2>
-            <p className="text-xs text-[#45464d] mt-0.5">
+            <p className="text-xs text-[#45464d] dark:text-[#cbd5e1] mt-0.5">
               Desempeño individual por cuota, efectividad y control de asistencia
             </p>
           </div>
@@ -412,7 +412,7 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
           <div className="flex items-center gap-3">
             {/* Search */}
             <div className="relative">
-              <Search className="w-4 h-4 absolute left-3 top-2.5 text-[#76777d]" />
+              <Search className="w-4 h-4 absolute left-3 top-2.5 text-[#76777d] dark:text-[#94a3b8]" />
               <input
                 type="text"
                 value={searchQuery}
@@ -421,7 +421,7 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
                   setCurrentPage(1);
                 }}
                 placeholder="Buscar vendedor..."
-                className="pl-9 pr-4 py-1.5 bg-white border border-[#c6c6cd] rounded-lg text-xs font-medium outline-none text-[#191c1e] placeholder:text-[#76777d] w-52 shadow-2xs"
+                className="pl-9 pr-4 py-1.5 bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg text-xs font-medium outline-none text-[#191c1e] dark:text-[#f1f5f9] placeholder:text-[#76777d] dark:text-[#94a3b8] w-52 shadow-2xs"
               />
             </div>
 
@@ -433,7 +433,7 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
                   setStatusFilter(e.target.value as any);
                   setCurrentPage(1);
                 }}
-                className="px-3 py-1.5 bg-white border border-[#c6c6cd] rounded-lg text-xs font-semibold text-[#191c1e] outline-none shadow-2xs cursor-pointer"
+                className="px-3 py-1.5 bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg text-xs font-semibold text-[#191c1e] dark:text-[#f1f5f9] outline-none shadow-2xs cursor-pointer"
               >
                 <option value="all">Todos los Vendedores</option>
                 <option value="Presente">Solo Presentes</option>
@@ -457,22 +457,22 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
                 <th className="py-3 px-4 text-center rounded-r-lg">Acciones rápidas</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#e0e3e5] text-xs text-[#191c1e]">
+            <tbody className="divide-y divide-[#e0e3e5] text-xs text-[#191c1e] dark:text-[#f1f5f9]">
               {paginatedVendedores.map((v) => {
                 const compliance = Math.round((v.currentSales / v.quotaTarget) * 100);
                 const visitEffectiveness = ((v.completedVisits / v.totalVisits) * 100).toFixed(1);
                 const isUnderperforming = compliance < 80 || parseFloat(visitEffectiveness) < 70;
 
                 return (
-                  <tr key={v.id} className="hover:bg-white/60 transition-colors">
+                  <tr key={v.id} className="hover:bg-white dark:bg-[#1e293b]/60 transition-colors">
                     {/* Vendedor */}
                     <td className="py-3.5 px-4 font-semibold flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-[#131b2e] text-white flex items-center justify-center font-bold text-xs shrink-0">
                         {v.initials}
                       </div>
                       <div>
-                        <p className="font-bold text-xs text-[#191c1e]">{v.name}</p>
-                        <span className="text-[11px] text-[#76777d]">{v.route}</span>
+                        <p className="font-bold text-xs text-[#191c1e] dark:text-[#f1f5f9]">{v.name}</p>
+                        <span className="text-[11px] text-[#76777d] dark:text-[#94a3b8]">{v.route}</span>
                       </div>
                     </td>
 
@@ -494,7 +494,7 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
                     {/* Cumplimiento Cuota */}
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-2">
-                        <div className="flex-1 bg-[#e6e8ea] h-2.5 rounded-full overflow-hidden w-28">
+                        <div className="flex-1 bg-[#e6e8ea] dark:bg-[#475569] h-2.5 rounded-full overflow-hidden w-28">
                           <div
                             className={`h-full rounded-full ${
                               isUnderperforming ? 'bg-[#ba1a1a]' : 'bg-[#006c49]'
@@ -504,7 +504,7 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
                         </div>
                         <span
                           className={`text-xs font-bold font-mono ${
-                            isUnderperforming ? 'text-[#ba1a1a]' : 'text-[#191c1e]'
+                            isUnderperforming ? 'text-[#ba1a1a]' : 'text-[#191c1e] dark:text-[#f1f5f9]'
                           }`}
                         >
                           {compliance}%
@@ -521,13 +521,13 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
                       >
                         {visitEffectiveness}%
                       </span>
-                      <span className="text-[11px] text-[#76777d]">
+                      <span className="text-[11px] text-[#76777d] dark:text-[#94a3b8]">
                         {v.completedVisits}/{v.totalVisits} Visitas
                       </span>
                     </td>
 
                     {/* Venta Actual */}
-                    <td className="py-3.5 px-4 text-right font-bold font-mono text-xs text-[#191c1e]">
+                    <td className="py-3.5 px-4 text-right font-bold font-mono text-xs text-[#191c1e] dark:text-[#f1f5f9]">
                       {formatSoles(v.currentSales)}
                     </td>
 
@@ -536,14 +536,14 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
                       <div className="flex items-center justify-center gap-2">
                         <button
                           onClick={() => onCallVendedor(v)}
-                          className="p-1.5 rounded-lg bg-white border border-[#c6c6cd] text-[#191c1e] hover:bg-[#e6e8ea] transition-colors cursor-pointer"
+                          className="p-1.5 rounded-lg bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] text-[#191c1e] dark:text-[#f1f5f9] hover:bg-[#e6e8ea] dark:bg-[#475569] transition-colors cursor-pointer"
                           title={`Llamar a ${v.name}`}
                         >
                           <Phone className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => onAttendanceClick(v)}
-                          className="p-1.5 rounded-lg bg-white border border-[#c6c6cd] text-[#191c1e] hover:bg-[#e6e8ea] transition-colors cursor-pointer"
+                          className="p-1.5 rounded-lg bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] text-[#191c1e] dark:text-[#f1f5f9] hover:bg-[#e6e8ea] dark:bg-[#475569] transition-colors cursor-pointer"
                           title="Registrar / Modificar Asistencia"
                         >
                           <CheckSquare className="w-3.5 h-3.5" />
@@ -558,15 +558,15 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
         </div>
 
         {/* Table Pagination */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-[#e0e3e5]">
-          <span className="text-xs text-[#45464d]">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-[#e0e3e5] dark:border-[#334155]">
+          <span className="text-xs text-[#45464d] dark:text-[#cbd5e1]">
             Mostrando {paginatedVendedores.length} de {filteredVendedores.length} vendedores en la mesa
           </span>
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
               disabled={currentPage === 1}
-              className="px-3 py-1 bg-white border border-[#c6c6cd] rounded-lg text-xs font-semibold text-[#191c1e] disabled:opacity-40 cursor-pointer"
+              className="px-3 py-1 bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg text-xs font-semibold text-[#191c1e] dark:text-[#f1f5f9] disabled:opacity-40 cursor-pointer"
             >
               Anterior
             </button>
@@ -577,7 +577,7 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
                 className={`w-7 h-7 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   currentPage === idx + 1
                     ? 'bg-[#131b2e] text-white shadow-2xs'
-                    : 'bg-white border border-[#c6c6cd] text-[#191c1e] hover:bg-[#e6e8ea]'
+                    : 'bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] text-[#191c1e] dark:text-[#f1f5f9] hover:bg-[#e6e8ea] dark:bg-[#475569]'
                 }`}
               >
                 {idx + 1}
@@ -586,7 +586,7 @@ export const SupervisorView: React.FC<SupervisorViewProps> = ({
             <button
               onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className="px-3 py-1 bg-white border border-[#c6c6cd] rounded-lg text-xs font-semibold text-[#191c1e] disabled:opacity-40 cursor-pointer"
+              className="px-3 py-1 bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg text-xs font-semibold text-[#191c1e] dark:text-[#f1f5f9] disabled:opacity-40 cursor-pointer"
             >
               Siguiente
             </button>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Role, LimaZone, MesaAlert } from '../types';
-import { Bell, User, Check, X, ChevronDown, ShieldAlert, Shield, Menu } from 'lucide-react';
+import { Bell, User, Check, X, ChevronDown, ShieldAlert, Shield, Menu, Sun, Moon } from 'lucide-react';
 
 interface HeaderProps {
   currentRole: Role;
@@ -12,6 +12,8 @@ interface HeaderProps {
   alerts: MesaAlert[];
   onToggleSidebar: () => void;
   sidebarOpen: boolean;
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -24,6 +26,8 @@ export const Header: React.FC<HeaderProps> = ({
   alerts,
   onToggleSidebar,
   sidebarOpen,
+  theme,
+  onToggleTheme,
 }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [unreadCount, setUnreadCount] = useState(alerts.length);
@@ -58,14 +62,14 @@ export const Header: React.FC<HeaderProps> = ({
   }[currentRole];
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-auto min-h-[72px] bg-[#f7f9fb]/90 backdrop-blur-md border-b border-[#e0e3e5] z-40 px-4 pb-2">
+    <header className="fixed top-0 left-0 right-0 h-auto min-h-[72px] bg-[#f7f9fb] dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-[#e0e3e5] dark:border-[#334155] z-40 px-4 pb-2">
       {/* Left controls */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
         <div className="flex items-center gap-3 flex-wrap">
           {/* Hamburger toggle */}
           <button
             onClick={onToggleSidebar}
-            className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#e6e8ea] text-[#45464d] transition-colors cursor-pointer"
+            className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#e6e8ea] dark:bg-[#475569] text-[#45464d] dark:text-[#cbd5e1] transition-colors cursor-pointer"
             title={sidebarOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
             {sidebarOpen ? (
@@ -75,13 +79,13 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </button>
           {/* Role Selector with Security Level Indicator */}
-          <div className="flex items-center bg-[#eceef0] border border-[#d8dadc] rounded-lg px-2 py-1 shadow-xs">
-            <Shield className="w-3.5 h-3.5 text-slate-500 mr-1" />
-            <span className="text-xs font-semibold text-[#45464d] px-1">Rol / Credencial:</span>
+          <div className="flex items-center bg-[#eceef0] dark:bg-[#334155] border border-[#d8dadc] dark:border-[#475569] rounded-lg px-2 py-1 shadow-xs">
+            <Shield className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 dark:text-slate-500 mr-1" />
+            <span className="text-xs font-semibold text-[#45464d] dark:text-[#cbd5e1] px-1">Rol / Credencial:</span>
             <select
               value={currentRole}
               onChange={(e) => onChangeRole(e.target.value as Role)}
-              className="bg-transparent text-xs font-bold text-[#191c1e] outline-none cursor-pointer pr-1"
+              className="bg-transparent text-xs font-bold text-[#191c1e] dark:text-[#f1f5f9] outline-none cursor-pointer pr-1"
             >
               <option value="Gerencia">Gerencia (Superadmin)</option>
               <option value="Supervisor">Supervisor (Mesa de Trabajo)</option>
@@ -90,13 +94,13 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* IGV Switcher */}
-          <div className="flex items-center bg-[#eceef0] border border-[#d8dadc] rounded-lg p-0.5 shadow-xs">
+          <div className="flex items-center bg-[#eceef0] dark:bg-[#334155] border border-[#d8dadc] dark:border-[#475569] rounded-lg p-0.5 shadow-xs">
             <button
               onClick={() => onToggleIGV(true)}
               className={`px-2.5 py-1 rounded text-xs font-semibold transition-all cursor-pointer ${
                 withIGV
                   ? 'bg-[#131b2e] text-white shadow-xs'
-                  : 'text-[#45464d] hover:text-[#191c1e]'
+                  : 'text-[#45464d] dark:text-[#cbd5e1] hover:text-[#191c1e] dark:text-[#f1f5f9]'
               }`}
             >
               Con IGV
@@ -106,7 +110,7 @@ export const Header: React.FC<HeaderProps> = ({
               className={`px-2.5 py-1 rounded text-xs font-semibold transition-all cursor-pointer ${
                 !withIGV
                   ? 'bg-[#131b2e] text-white shadow-xs'
-                  : 'text-[#45464d] hover:text-[#191c1e]'
+                  : 'text-[#45464d] dark:text-[#cbd5e1] hover:text-[#191c1e] dark:text-[#f1f5f9]'
               }`}
             >
               Sin IGV
@@ -114,12 +118,12 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Lima Zone Selector */}
-          <div className="flex items-center bg-[#eceef0] border border-[#d8dadc] rounded-lg px-2 py-1 shadow-xs">
-            <span className="text-xs font-semibold text-[#45464d] px-1.5">Lima:</span>
+          <div className="flex items-center bg-[#eceef0] dark:bg-[#334155] border border-[#d8dadc] dark:border-[#475569] rounded-lg px-2 py-1 shadow-xs">
+            <span className="text-xs font-semibold text-[#45464d] dark:text-[#cbd5e1] px-1.5">Lima:</span>
             <select
               value={selectedZone}
               onChange={(e) => onChangeZone(e.target.value as LimaZone)}
-              className="bg-transparent text-xs font-bold text-[#191c1e] outline-none cursor-pointer pr-1"
+              className="bg-transparent text-xs font-bold text-[#191c1e] dark:text-[#f1f5f9] outline-none cursor-pointer pr-1"
             >
               <option value="Todas las Zonas">Todas las Zonas</option>
               <option value="Lima Norte">Lima Norte</option>
@@ -132,6 +136,14 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right controls */}
         <div className="flex items-center gap-3 relative">
+          {/* Theme toggle */}
+          <button
+            onClick={onToggleTheme}
+            className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#e6e8ea] dark:hover:bg-[#475569] text-[#45464d] dark:text-[#cbd5e1] transition-colors cursor-pointer"
+            title={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
+          >
+            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
           {/* Notifications button */}
           <div className="relative">
             <button
@@ -140,7 +152,7 @@ export const Header: React.FC<HeaderProps> = ({
                 setShowProfileMenu(false);
                 setUnreadCount(0);
               }}
-              className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#e6e8ea] text-[#45464d] relative transition-colors cursor-pointer"
+              className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#e6e8ea] dark:bg-[#475569] text-[#45464d] dark:text-[#cbd5e1] relative transition-colors cursor-pointer"
               title="Notificaciones"
             >
               <Bell className="w-4 h-4" />
@@ -151,14 +163,14 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Notifications Dropdown */}
             {showNotifications && (
-              <div className="absolute right-0 mt-2 w-80 bg-white border border-[#d8dadc] rounded-xl shadow-lg p-3 z-50">
+              <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-[#1e293b] border border-[#d8dadc] dark:border-[#475569] rounded-xl shadow-lg p-3 z-50">
                 <div className="flex items-center justify-between pb-2 border-b border-[#e6e8ea] mb-2">
-                  <span className="text-xs font-bold text-[#191c1e] uppercase tracking-wider">
+                  <span className="text-xs font-bold text-[#191c1e] dark:text-[#f1f5f9] uppercase tracking-wider">
                     Alertas Operativas ({alerts.length})
                   </span>
                   <button
                     onClick={() => setShowNotifications(false)}
-                    className="text-slate-400 hover:text-slate-600 cursor-pointer"
+                    className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:text-slate-300 cursor-pointer"
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
@@ -177,9 +189,9 @@ export const Header: React.FC<HeaderProps> = ({
                     >
                       <div className="flex items-center justify-between font-bold mb-0.5">
                         <span>{alert.title}</span>
-                        <span className="text-[10px] font-normal text-slate-500">{alert.timestamp}</span>
+                        <span className="text-[10px] font-normal text-slate-500 dark:text-slate-400 dark:text-slate-500">{alert.timestamp}</span>
                       </div>
-                      <p className="text-[11px] leading-relaxed text-slate-700">{alert.description}</p>
+                      <p className="text-[11px] leading-relaxed text-slate-700 dark:text-slate-200">{alert.description}</p>
                     </div>
                   ))}
                 </div>
@@ -194,28 +206,28 @@ export const Header: React.FC<HeaderProps> = ({
                 setShowProfileMenu(!showProfileMenu);
                 setShowNotifications(false);
               }}
-              className="flex items-center gap-2 pl-1 pr-2 py-1 rounded-full hover:bg-[#e6e8ea] transition-colors cursor-pointer"
+              className="flex items-center gap-2 pl-1 pr-2 py-1 rounded-full hover:bg-[#e6e8ea] dark:bg-[#475569] transition-colors cursor-pointer"
             >
               <div className="w-8 h-8 rounded-full bg-[#131b2e] text-white flex items-center justify-center font-bold text-xs">
                 {profileData.initials}
               </div>
               <div className="hidden sm:flex flex-col text-left">
-                <span className="text-xs font-bold text-[#191c1e]">{profileData.name}</span>
-                <span className="text-[10px] text-[#76777d]">{profileData.title}</span>
+                <span className="text-xs font-bold text-[#191c1e] dark:text-[#f1f5f9]">{profileData.name}</span>
+                <span className="text-[10px] text-[#76777d] dark:text-[#94a3b8]">{profileData.title}</span>
               </div>
-              <ChevronDown className="w-3 h-3 text-[#76777d]" />
+              <ChevronDown className="w-3 h-3 text-[#76777d] dark:text-[#94a3b8]" />
             </button>
 
             {showProfileMenu && (
-              <div className="absolute right-0 mt-2 w-64 bg-white border border-[#d8dadc] rounded-xl shadow-lg p-3 z-50 text-xs">
+              <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-[#1e293b] border border-[#d8dadc] dark:border-[#475569] rounded-xl shadow-lg p-3 z-50 text-xs">
                 <div className="pb-2 border-b border-[#e6e8ea]">
-                  <p className="font-bold text-[#191c1e]">{profileData.name}</p>
-                  <p className="text-[11px] text-[#76777d]">{profileData.email}</p>
+                  <p className="font-bold text-[#191c1e] dark:text-[#f1f5f9]">{profileData.name}</p>
+                  <p className="text-[11px] text-[#76777d] dark:text-[#94a3b8]">{profileData.email}</p>
                   <span className={`inline-block mt-1 text-[10px] font-semibold px-2 py-0.5 rounded ${profileData.badgeBg}`}>
                     {profileData.scope}
                   </span>
                 </div>
-                <div className="py-2 text-[11px] text-slate-600 space-y-1">
+                <div className="py-2 text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
                   <p>
                     <strong>Nivel:</strong> {currentRole}
                   </p>
@@ -231,7 +243,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <div className="pt-2 border-t border-[#e6e8ea]">
                   <button
                     onClick={() => setShowProfileMenu(false)}
-                    className="w-full text-left px-2 py-1.5 hover:bg-[#f2f4f6] rounded text-[#45464d] text-xs cursor-pointer"
+                    className="w-full text-left px-2 py-1.5 hover:bg-[#f2f4f6] dark:bg-[#1e293b] rounded text-[#45464d] dark:text-[#cbd5e1] text-xs cursor-pointer"
                   >
                     Cerrar Menú
                   </button>

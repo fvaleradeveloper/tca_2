@@ -71,14 +71,14 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
   return (
     <div className="flex flex-col w-full gap-4 pb-24 max-w-full overflow-x-hidden">
       {/* 1. TOMA DE PEDIDO - Lo primero que ve el vendedor */}
-      <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-4 sm:p-6 rounded-xl shadow-xs w-full">
+      <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-4 sm:p-6 rounded-xl shadow-xs w-full">
         <div className="flex items-center gap-2 mb-3 sm:mb-4">
           <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-[#131b2e]" />
-          <h3 className="font-bold text-sm sm:text-base text-[#191c1e]">
+          <h3 className="font-bold text-sm sm:text-base text-[#191c1e] dark:text-[#f1f5f9]">
             Toma de Pedido Rápido
           </h3>
         </div>
-        <p className="text-xs sm:text-sm text-[#45464d] mb-3 sm:mb-4">
+        <p className="text-xs sm:text-sm text-[#45464d] dark:text-[#cbd5e1] mb-3 sm:mb-4">
           Cliente actual: <strong className="text-slate-900">{selectedVisit.clientName}</strong>
         </p>
 
@@ -93,13 +93,13 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
         ) : (
           <form onSubmit={handleRegisterOrder} className="space-y-3 sm:space-y-4 w-full">
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#45464d] mb-1">
+              <label className="block text-xs sm:text-sm font-semibold text-[#45464d] dark:text-[#cbd5e1] mb-1">
                 Seleccionar Producto / Línea
               </label>
               <select
                 value={newOrderSKU}
                 onChange={(e) => setNewOrderSKU(e.target.value)}
-                className="w-full text-sm font-semibold p-2 sm:p-2.5 rounded-lg border border-[#c6c6cd] bg-white outline-none text-[#191c1e]"
+                className="w-full text-sm font-semibold p-2 sm:p-2.5 rounded-lg border border-[#c6c6cd] dark:border-[#475569] bg-white dark:bg-[#1e293b] outline-none text-[#191c1e] dark:text-[#f1f5f9]"
               >
                 <option value="Gloria Azul 400g">Leche Gloria Azul 400g (Pack x24)</option>
                 <option value="Primor Clásico 900ml">Aceite Primor Clásico 900ml (Caja x12)</option>
@@ -109,14 +109,14 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#45464d] mb-1">
+              <label className="block text-xs sm:text-sm font-semibold text-[#45464d] dark:text-[#cbd5e1] mb-1">
                 Cantidad de Cajas / Fardos
               </label>
               <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setNewOrderQty((q) => Math.max(q - 1, 1))}
-                  className="w-8 sm:w-9 h-8 sm:h-9 rounded-lg bg-white border border-[#c6c6cd] font-bold text-sm"
+                  className="w-8 sm:w-9 h-8 sm:h-9 rounded-lg bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] font-bold text-sm"
                 >
                   -
                 </button>
@@ -124,24 +124,24 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
                   type="number"
                   value={newOrderQty}
                   onChange={(e) => setNewOrderQty(parseInt(e.target.value) || 1)}
-                  className="flex-1 text-center font-mono font-bold text-xs sm:text-sm p-2 rounded-lg border border-[#c6c6cd] bg-white outline-none"
+                  className="flex-1 text-center font-mono font-bold text-xs sm:text-sm p-2 rounded-lg border border-[#c6c6cd] dark:border-[#475569] bg-white dark:bg-[#1e293b] outline-none"
                 />
                 <button
                   type="button"
                   onClick={() => setNewOrderQty((q) => q + 1)}
-                  className="w-8 sm:w-9 h-8 sm:h-9 rounded-lg bg-white border border-[#c6c6cd] font-bold text-sm"
+                  className="w-8 sm:w-9 h-8 sm:h-9 rounded-lg bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] font-bold text-sm"
                 >
                   +
                 </button>
               </div>
             </div>
 
-            <div className="p-3 sm:p-4 bg-white border border-[#e0e3e5] rounded-lg">
-              <div className="flex justify-between text-xs sm:text-sm text-slate-600 mb-1">
+            <div className="p-3 sm:p-4 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-lg">
+              <div className="flex justify-between text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-1">
                 <span>Subtotal Estimado:</span>
                 <span className="font-mono">{formatSolesFijo(newOrderQty * 95)}</span>
               </div>
-              <div className="flex justify-between text-xs sm:text-sm font-bold text-[#191c1e] pt-1 border-t border-slate-100">
+              <div className="flex justify-between text-xs sm:text-sm font-bold text-[#191c1e] dark:text-[#f1f5f9] pt-1 border-t border-slate-100 dark:border-slate-700">
                 <span>Total con IGV (18%):</span>
                 <span className="font-mono text-emerald-700">
                   {formatSolesFijo(newOrderQty * 95 * 1.18)}
@@ -163,50 +163,50 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
       {/* 2. Daily Progress Cards */}
       <div className="grid grid-cols-1 gap-4 w-full">
         {/* Sales vs Quota */}
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-4 sm:p-5 rounded-xl shadow-xs w-full">
-          <span className="text-[10px] sm:text-xs font-bold text-[#45464d] uppercase">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-4 sm:p-5 rounded-xl shadow-xs w-full">
+          <span className="text-[10px] sm:text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase">
             Venta del Día
           </span>
           <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-xl sm:text-2xl font-extrabold text-[#191c1e] font-mono">
+            <span className="text-xl sm:text-2xl font-extrabold text-[#191c1e] dark:text-[#f1f5f9] font-mono">
               {formatSoles(selectedVendedor.currentSales)}
             </span>
             <span className="text-[10px] sm:text-xs font-bold text-[#00714d]">
               115% de cuota
             </span>
           </div>
-          <p className="text-[10px] sm:text-xs text-[#76777d] mt-1">
+          <p className="text-[10px] sm:text-xs text-[#76777d] dark:text-[#94a3b8] mt-1">
             Meta diaria: {formatSoles(selectedVendedor.quotaTarget)}
           </p>
-          <div className="w-full bg-[#e6e8ea] h-2 sm:h-2.5 rounded-full mt-2 sm:mt-3 overflow-hidden">
+          <div className="w-full bg-[#e6e8ea] dark:bg-[#475569] h-2 sm:h-2.5 rounded-full mt-2 sm:mt-3 overflow-hidden">
             <div className="bg-[#006c49] h-full rounded-full" style={{ width: '100%' }}></div>
           </div>
         </div>
 
         {/* Visit Status */}
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-4 sm:p-5 rounded-xl shadow-xs w-full">
-          <span className="text-[10px] sm:text-xs font-bold text-[#45464d] uppercase">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-4 sm:p-5 rounded-xl shadow-xs w-full">
+          <span className="text-[10px] sm:text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase">
             Avance de Visitas de Hoy
           </span>
           <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-xl sm:text-2xl font-extrabold text-[#191c1e] font-mono">
+            <span className="text-xl sm:text-2xl font-extrabold text-[#191c1e] dark:text-[#f1f5f9] font-mono">
               {visits.filter((v) => v.status === 'completado').length} / {visits.length}
             </span>
             <span className="text-[10px] sm:text-xs font-bold text-[#00714d]">
               {Math.round((visits.filter((v) => v.status === 'completado').length / visits.length) * 100)}%
             </span>
           </div>
-          <p className="text-[10px] sm:text-xs text-[#76777d] mt-1">
+          <p className="text-[10px] sm:text-xs text-[#76777d] dark:text-[#94a3b8] mt-1">
             {visits.filter((v) => v.status === 'pendiente').length} pendientes en hoja de ruta
           </p>
-          <div className="w-full bg-[#e6e8ea] h-2 sm:h-2.5 rounded-full mt-2 sm:mt-3 overflow-hidden">
+          <div className="w-full bg-[#e6e8ea] dark:bg-[#475569] h-2 sm:h-2.5 rounded-full mt-2 sm:mt-3 overflow-hidden">
             <div className="bg-[#131b2e] h-full rounded-full" style={{ width: '62%' }}></div>
           </div>
         </div>
 
         {/* Commission Tracker */}
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-4 sm:p-5 rounded-xl shadow-xs w-full">
-          <span className="text-[10px] sm:text-xs font-bold text-[#45464d] uppercase">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-4 sm:p-5 rounded-xl shadow-xs w-full">
+          <span className="text-[10px] sm:text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase">
             Comisión Estimada (Día)
           </span>
           <div className="flex items-baseline gap-2 mt-2">
@@ -217,27 +217,27 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
               Bono Superación
             </span>
           </div>
-          <p className="text-[10px] sm:text-xs text-[#76777d] mt-1">
+          <p className="text-[10px] sm:text-xs text-[#76777d] dark:text-[#94a3b8] mt-1">
             Comisión base S/. 280 + Bono cuota &gt; 110%
           </p>
-          <div className="w-full bg-[#e6e8ea] h-2 sm:h-2.5 rounded-full mt-2 sm:mt-3 overflow-hidden">
+          <div className="w-full bg-[#e6e8ea] dark:bg-[#475569] h-2 sm:h-2.5 rounded-full mt-2 sm:mt-3 overflow-hidden">
             <div className="bg-emerald-600 h-full rounded-full" style={{ width: '100%' }}></div>
           </div>
         </div>
       </div>
 
       {/* 3. Field Route Checklist */}
-      <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-4 sm:p-6 rounded-xl shadow-xs w-full">
+      <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-4 sm:p-6 rounded-xl shadow-xs w-full">
         <div className="flex items-center justify-between mb-3 sm:mb-4 flex-wrap gap-2">
           <div>
-            <h2 className="text-sm sm:text-base font-bold text-[#191c1e]">
+            <h2 className="text-sm sm:text-base font-bold text-[#191c1e] dark:text-[#f1f5f9]">
               Hoja de Ruta de Visitas - Turno Mañana/Tarde
             </h2>
-            <p className="text-[10px] sm:text-xs text-[#45464d]">
+            <p className="text-[10px] sm:text-xs text-[#45464d] dark:text-[#cbd5e1]">
               Clientes bodegueros ordenados por secuencia óptima de recorrido
             </p>
           </div>
-          <span className="text-[10px] sm:text-xs font-mono font-semibold text-slate-500">
+          <span className="text-[10px] sm:text-xs font-mono font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500">
             Distrito: Los Olivos / SMP
           </span>
         </div>
@@ -251,8 +251,8 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
                 onClick={() => setSelectedVisit(vis)}
                 className={`p-3 sm:p-4 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
                   isSelected
-                    ? 'bg-white border-slate-900 shadow-xs'
-                    : 'bg-white/80 border-[#e0e3e5] hover:bg-white'
+                    ? 'bg-white dark:bg-[#1e293b] border-slate-900 shadow-xs'
+                    : 'bg-white dark:bg-[#1e293b]/80 border-[#e0e3e5] dark:border-[#334155] hover:bg-white dark:bg-[#1e293b]'
                 }`}
               >
                 <div className="flex items-start gap-2 sm:gap-3">
@@ -269,17 +269,17 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5">
-                      <h4 className="font-bold text-xs sm:text-sm text-[#191c1e] truncate">
+                      <h4 className="font-bold text-xs sm:text-sm text-[#191c1e] dark:text-[#f1f5f9] truncate">
                         {vis.clientName}
                       </h4>
-                      <span className="text-[9px] sm:text-[10px] text-slate-500 font-mono">({vis.scheduledTime})</span>
+                      <span className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-mono">({vis.scheduledTime})</span>
                     </div>
-                    <p className="text-[9px] sm:text-[10px] text-[#45464d] flex items-center gap-1 mt-0.5">
-                      <MapPin className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-slate-400" />
+                    <p className="text-[9px] sm:text-[10px] text-[#45464d] dark:text-[#cbd5e1] flex items-center gap-1 mt-0.5">
+                      <MapPin className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-slate-400 dark:text-slate-500" />
                       {vis.address}, {vis.district}
                     </p>
                     {vis.notes && (
-                      <p className="text-[9px] sm:text-[10px] text-slate-500 italic mt-1 bg-slate-50 px-2 py-0.5 rounded">
+                      <p className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 dark:text-slate-500 italic mt-1 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded">
                         Nota: {vis.notes}
                       </p>
                     )}
@@ -292,7 +292,7 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
                       {formatSoles(vis.orderTotal)}
                     </span>
                   ) : (
-                    <span className="text-[9px] sm:text-[10px] text-slate-400">Sin pedido</span>
+                    <span className="text-[9px] sm:text-[10px] text-slate-400 dark:text-slate-500">Sin pedido</span>
                   )}
 
                   <span
@@ -303,7 +303,7 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
                         ? 'bg-blue-100 text-blue-800'
                         : vis.status === 'rechazado'
                         ? 'bg-red-100 text-red-800'
-                        : 'bg-slate-100 text-slate-600'
+                        : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
                     }`}
                   >
                     {vis.status === 'completado'

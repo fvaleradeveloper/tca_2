@@ -75,15 +75,15 @@ export const GerenciaView: React.FC<GerenciaViewProps> = ({ withIGV }) => {
   return (
     <div className="flex flex-col w-full gap-6 pb-20">
       {/* Executive Title */}
-      <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-6 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
+      <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-6 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
         <div>
-          <span className="text-xs uppercase tracking-wider text-[#45464d] font-bold">
+          <span className="text-xs uppercase tracking-wider text-[#45464d] dark:text-[#cbd5e1] font-bold">
             Dirección General & Finanzas
           </span>
-          <h1 className="text-2xl font-bold text-[#191c1e] tracking-tight">
+          <h1 className="text-2xl font-bold text-[#191c1e] dark:text-[#f1f5f9] tracking-tight">
             Panel de Control Ejecutivo - Vista Gerencia
           </h1>
-          <p className="text-sm text-[#45464d]">
+          <p className="text-sm text-[#45464d] dark:text-[#cbd5e1]">
             Rendimiento consolidado, rentabilidad bruta por zona y acuerdos comerciales.
           </p>
         </div>
@@ -110,24 +110,24 @@ export const GerenciaView: React.FC<GerenciaViewProps> = ({ withIGV }) => {
 
       {/* 4 Executive C-Level Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-5 rounded-xl shadow-xs">
-          <span className="text-xs font-bold text-[#45464d] uppercase">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-5 rounded-xl shadow-xs">
+          <span className="text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase">
             Facturación Consolidada Lima
           </span>
           <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-2xl font-extrabold text-[#191c1e] font-mono">
+            <span className="text-2xl font-extrabold text-[#191c1e] dark:text-[#f1f5f9] font-mono">
               {formatSoles(4131000)}
             </span>
             <span className="text-xs text-[#00714d] font-bold">+11.2%</span>
           </div>
-          <p className="text-xs text-[#76777d] mt-1">Presupuesto: {formatSoles(4380000)}</p>
-          <div className="w-full bg-[#e6e8ea] h-2 rounded-full mt-3 overflow-hidden">
+          <p className="text-xs text-[#76777d] dark:text-[#94a3b8] mt-1">Presupuesto: {formatSoles(4380000)}</p>
+          <div className="w-full bg-[#e6e8ea] dark:bg-[#475569] h-2 rounded-full mt-3 overflow-hidden">
             <div className="bg-[#131b2e] h-full rounded-full" style={{ width: '94.3%' }}></div>
           </div>
         </div>
 
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-5 rounded-xl shadow-xs">
-          <span className="text-xs font-bold text-[#45464d] uppercase">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-5 rounded-xl shadow-xs">
+          <span className="text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase">
             Margen Bruto Ponderado
           </span>
           <div className="flex items-baseline gap-2 mt-2">
@@ -138,51 +138,51 @@ export const GerenciaView: React.FC<GerenciaViewProps> = ({ withIGV }) => {
               +0.9% vs Meta
             </span>
           </div>
-          <p className="text-xs text-[#76777d] mt-1">Meta corporativa anual: 27.5%</p>
-          <div className="w-full bg-[#e6e8ea] h-2 rounded-full mt-3 overflow-hidden">
+          <p className="text-xs text-[#76777d] dark:text-[#94a3b8] mt-1">Meta corporativa anual: 27.5%</p>
+          <div className="w-full bg-[#e6e8ea] dark:bg-[#475569] h-2 rounded-full mt-3 overflow-hidden">
             <div className="bg-[#006c49] h-full rounded-full" style={{ width: '88%' }}></div>
           </div>
         </div>
 
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-5 rounded-xl shadow-xs">
-          <span className="text-xs font-bold text-[#45464d] uppercase">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-5 rounded-xl shadow-xs">
+          <span className="text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase">
             Fuerza de Ventas Activa
           </span>
           <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-2xl font-extrabold text-[#191c1e] font-mono">
+            <span className="text-2xl font-extrabold text-[#191c1e] dark:text-[#f1f5f9] font-mono">
               39 Vendedores
             </span>
-            <span className="text-xs text-[#45464d]">4 Zonas</span>
+            <span className="text-xs text-[#45464d] dark:text-[#cbd5e1]">4 Zonas</span>
           </div>
-          <p className="text-xs text-[#76777d] mt-1">Cero rotación no planificada este mes</p>
-          <div className="w-full bg-[#e6e8ea] h-2 rounded-full mt-3 overflow-hidden">
+          <p className="text-xs text-[#76777d] dark:text-[#94a3b8] mt-1">Cero rotación no planificada este mes</p>
+          <div className="w-full bg-[#e6e8ea] dark:bg-[#475569] h-2 rounded-full mt-3 overflow-hidden">
             <div className="bg-[#131b2e] h-full rounded-full" style={{ width: '100%' }}></div>
           </div>
         </div>
 
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-5 rounded-xl shadow-xs">
-          <span className="text-xs font-bold text-[#45464d] uppercase">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-5 rounded-xl shadow-xs">
+          <span className="text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase">
             Entrega On-Time & In-Full (OTIF)
           </span>
           <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-2xl font-extrabold text-[#191c1e] font-mono">
+            <span className="text-2xl font-extrabold text-[#191c1e] dark:text-[#f1f5f9] font-mono">
               97.1%
             </span>
             <span className="text-xs text-[#00714d] font-bold">Excelente</span>
           </div>
-          <p className="text-xs text-[#76777d] mt-1">Despachos completados desde Callao</p>
-          <div className="w-full bg-[#e6e8ea] h-2 rounded-full mt-3 overflow-hidden">
+          <p className="text-xs text-[#76777d] dark:text-[#94a3b8] mt-1">Despachos completados desde Callao</p>
+          <div className="w-full bg-[#e6e8ea] dark:bg-[#475569] h-2 rounded-full mt-3 overflow-hidden">
             <div className="bg-[#006c49] h-full rounded-full" style={{ width: '97.1%' }}></div>
           </div>
         </div>
       </div>
 
       {/* Regional Comparison Matrix */}
-      <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-6 rounded-xl shadow-xs">
-        <h2 className="text-base font-bold text-[#191c1e] mb-1">
+      <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-6 rounded-xl shadow-xs">
+        <h2 className="text-base font-bold text-[#191c1e] dark:text-[#f1f5f9] mb-1">
           Matriz de Rendimiento Regional - Lima Metropolitana
         </h2>
-        <p className="text-xs text-[#45464d] mb-4">
+        <p className="text-xs text-[#45464d] dark:text-[#cbd5e1] mb-4">
           Comparativo de facturación, cuotas y rentabilidad bruta por mesa de trabajo
         </p>
 
@@ -202,14 +202,14 @@ export const GerenciaView: React.FC<GerenciaViewProps> = ({ withIGV }) => {
             </thead>
             <tbody className="divide-y divide-[#e0e3e5] text-slate-800">
               {zonesData.map((z, idx) => (
-                <tr key={idx} className="hover:bg-white/60">
-                  <td className="py-3 px-4 font-bold text-[#191c1e]">{z.zone}</td>
-                  <td className="py-3 px-4 font-semibold text-slate-700">{z.supervisor}</td>
+                <tr key={idx} className="hover:bg-white dark:bg-[#1e293b]/60">
+                  <td className="py-3 px-4 font-bold text-[#191c1e] dark:text-[#f1f5f9]">{z.zone}</td>
+                  <td className="py-3 px-4 font-semibold text-slate-700 dark:text-slate-200">{z.supervisor}</td>
                   <td className="py-3 px-4 text-center font-mono">{z.reps} ejecutivos</td>
-                  <td className="py-3 px-4 text-right font-mono font-bold text-[#191c1e]">
+                  <td className="py-3 px-4 text-right font-mono font-bold text-[#191c1e] dark:text-[#f1f5f9]">
                     {formatSoles(z.sales)}
                   </td>
-                  <td className="py-3 px-4 text-right font-mono text-slate-600">
+                  <td className="py-3 px-4 text-right font-mono text-slate-600 dark:text-slate-300">
                     {formatSoles(z.quota)}
                   </td>
                   <td className="py-3 px-4 text-center">
@@ -229,7 +229,7 @@ export const GerenciaView: React.FC<GerenciaViewProps> = ({ withIGV }) => {
                     {z.margin}%
                   </td>
                   <td className="py-3 px-4 text-center">
-                    <span className="text-[11px] font-semibold text-slate-600">
+                    <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-300">
                       {z.status}
                     </span>
                   </td>
@@ -242,41 +242,41 @@ export const GerenciaView: React.FC<GerenciaViewProps> = ({ withIGV }) => {
 
       {/* Strategic Supplier Rebates */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="p-5 bg-white border border-[#e0e3e5] rounded-xl shadow-xs">
+        <div className="p-5 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-xl shadow-xs">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="font-bold text-xs text-[#191c1e]">Rebate Anual Nestlé</h4>
+            <h4 className="font-bold text-xs text-[#191c1e] dark:text-[#f1f5f9]">Rebate Anual Nestlé</h4>
             <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded">
               Alcanzado
             </span>
           </div>
-          <p className="text-2xl font-mono font-extrabold text-[#191c1e]">3.2%</p>
-          <p className="text-[11px] text-slate-500 mt-1">
+          <p className="text-2xl font-mono font-extrabold text-[#191c1e] dark:text-[#f1f5f9]">3.2%</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">
             Meta de volumen superada en líneas de Lácteos y Chocolatería.
           </p>
         </div>
 
-        <div className="p-5 bg-white border border-[#e0e3e5] rounded-xl shadow-xs">
+        <div className="p-5 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-xl shadow-xs">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="font-bold text-xs text-[#191c1e]">Rebate Anual Alicorp</h4>
+            <h4 className="font-bold text-xs text-[#191c1e] dark:text-[#f1f5f9]">Rebate Anual Alicorp</h4>
             <span className="px-2 py-0.5 bg-blue-100 text-blue-800 text-[10px] font-bold rounded">
               En Camino (96%)
             </span>
           </div>
-          <p className="text-2xl font-mono font-extrabold text-[#191c1e]">2.8%</p>
-          <p className="text-[11px] text-slate-500 mt-1">
+          <p className="text-2xl font-mono font-extrabold text-[#191c1e] dark:text-[#f1f5f9]">2.8%</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">
             Foco en aceites Primor y fideos Don Vittorio en Lima Norte.
           </p>
         </div>
 
-        <div className="p-5 bg-white border border-[#e0e3e5] rounded-xl shadow-xs">
+        <div className="p-5 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-xl shadow-xs">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="font-bold text-xs text-[#191c1e]">Rebate Leche Gloria</h4>
+            <h4 className="font-bold text-xs text-[#191c1e] dark:text-[#f1f5f9]">Rebate Leche Gloria</h4>
             <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded">
               Alcanzado
             </span>
           </div>
-          <p className="text-2xl font-mono font-extrabold text-[#191c1e]">2.0%</p>
-          <p className="text-[11px] text-slate-500 mt-1">
+          <p className="text-2xl font-mono font-extrabold text-[#191c1e] dark:text-[#f1f5f9]">2.0%</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">
             Distribución intensiva cumplida en canal bodegas tradicionales.
           </p>
         </div>

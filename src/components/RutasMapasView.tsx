@@ -350,32 +350,32 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
   return (
     <div className="flex flex-col w-full gap-6 pb-20">
       {/* Page Title & Controls */}
-      <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-6 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
+      <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-6 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
         <div>
-          <span className="text-xs uppercase tracking-wider text-[#45464d] font-bold">
+          <span className="text-xs uppercase tracking-wider text-[#45464d] dark:text-[#cbd5e1] font-bold">
             Telemetría GPS & Navegación Satelital
           </span>
-          <h1 className="text-2xl font-bold text-[#191c1e] tracking-tight">
+          <h1 className="text-2xl font-bold text-[#191c1e] dark:text-[#f1f5f9] tracking-tight">
             Rutas, Calles y Avenidas en Tiempo Real - Lima
           </h1>
-          <p className="text-sm text-[#45464d]">
+          <p className="text-sm text-[#45464d] dark:text-[#cbd5e1]">
             Mapa detallado con visualización de avenidas principales, calles, jirones, geocercas y paradas de distribución.
           </p>
         </div>
 
         <div className="flex items-center gap-3 flex-wrap">
-          <div className="flex items-center gap-2 bg-white border border-[#c6c6cd] px-3 py-1.5 rounded-lg shadow-2xs">
+          <div className="flex items-center gap-2 bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] px-3 py-1.5 rounded-lg shadow-2xs">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
             <span className="text-xs font-bold text-slate-800">GPS Satelital Online</span>
           </div>
 
-          <div className="flex items-center gap-1 bg-white border border-[#c6c6cd] p-1 rounded-lg">
+          <div className="flex items-center gap-1 bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] p-1 rounded-lg">
             <button
               onClick={() => setActiveTileKey('voyager')}
               className={`px-2.5 py-1 text-xs font-bold rounded transition-colors cursor-pointer ${
                 activeTileKey === 'voyager'
                   ? 'bg-[#131b2e] text-white shadow-xs'
-                  : 'text-[#45464d] hover:text-[#191c1e]'
+                  : 'text-[#45464d] dark:text-[#cbd5e1] hover:text-[#191c1e] dark:text-[#f1f5f9]'
               }`}
             >
               Calles y Avenidas
@@ -385,7 +385,7 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
               className={`px-2.5 py-1 text-xs font-bold rounded transition-colors cursor-pointer ${
                 activeTileKey === 'osm'
                   ? 'bg-[#131b2e] text-white shadow-xs'
-                  : 'text-[#45464d] hover:text-[#191c1e]'
+                  : 'text-[#45464d] dark:text-[#cbd5e1] hover:text-[#191c1e] dark:text-[#f1f5f9]'
               }`}
             >
               OpenStreetMap
@@ -395,7 +395,7 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
               className={`px-2.5 py-1 text-xs font-bold rounded transition-colors cursor-pointer ${
                 activeTileKey === 'satellite'
                   ? 'bg-[#131b2e] text-white shadow-xs'
-                  : 'text-[#45464d] hover:text-[#191c1e]'
+                  : 'text-[#45464d] dark:text-[#cbd5e1] hover:text-[#191c1e] dark:text-[#f1f5f9]'
               }`}
             >
               Satelital
@@ -405,10 +405,10 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
       </div>
 
       {/* Sector Quick Jump & Search Avenues Strip */}
-      <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-4 rounded-xl shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+      <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-4 rounded-xl shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
         {/* Quick Sector Buttons */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
-          <span className="text-xs font-bold text-[#45464d] uppercase tracking-wide shrink-0 mr-1 flex items-center gap-1">
+          <span className="text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase tracking-wide shrink-0 mr-1 flex items-center gap-1">
             <Compass className="w-3.5 h-3.5 text-emerald-600" />
             Sectores:
           </span>
@@ -416,7 +416,7 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
             <button
               key={idx}
               onClick={() => handleJumpToSector(sec)}
-              className="px-3 py-1.5 bg-white hover:bg-slate-50 border border-[#c6c6cd] text-slate-800 text-xs font-semibold rounded-lg shadow-2xs whitespace-nowrap cursor-pointer transition-all hover:border-slate-900"
+              className="px-3 py-1.5 bg-white dark:bg-[#1e293b] hover:bg-slate-50 dark:bg-slate-800 border border-[#c6c6cd] dark:border-[#475569] text-slate-800 text-xs font-semibold rounded-lg shadow-2xs whitespace-nowrap cursor-pointer transition-all hover:border-slate-900"
               title={sec.description}
             >
               {sec.name}
@@ -427,13 +427,13 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
         {/* Street & Avenue Live Search */}
         <form onSubmit={handleSearchAvenue} className="flex items-center gap-2 shrink-0">
           <div className="relative">
-            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
+            <Search className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 absolute left-2.5 top-2.5" />
             <input
               type="text"
               value={streetSearch}
               onChange={(e) => setStreetSearch(e.target.value)}
               placeholder="Buscar avenida (ej: Izaguirre, Mayolo)..."
-              className="pl-8 pr-3 py-1.5 bg-white border border-[#c6c6cd] rounded-lg text-xs font-medium text-slate-800 outline-none w-64 shadow-2xs placeholder:text-slate-400"
+              className="pl-8 pr-3 py-1.5 bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg text-xs font-medium text-slate-800 outline-none w-64 shadow-2xs placeholder:text-slate-400 dark:text-slate-500"
             />
           </div>
           <button
@@ -448,11 +448,11 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
       {/* Main Map + Sidebar Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Map Viewport (col-span-3) */}
-        <div className="lg:col-span-3 bg-[#f2f4f6] border border-[#e0e3e5] rounded-xl overflow-hidden shadow-xs flex flex-col relative">
+        <div className="lg:col-span-3 bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-xl overflow-hidden shadow-xs flex flex-col relative">
           {/* Map Top Subheader */}
-          <div className="p-3.5 bg-white border-b border-[#e0e3e5] flex items-center justify-between flex-wrap gap-2 text-xs">
+          <div className="p-3.5 bg-white dark:bg-[#1e293b] border-b border-[#e0e3e5] dark:border-[#334155] flex items-center justify-between flex-wrap gap-2 text-xs">
             <div className="flex items-center gap-3">
-              <span className="font-bold text-[#191c1e] flex items-center gap-1.5">
+              <span className="font-bold text-[#191c1e] dark:text-[#f1f5f9] flex items-center gap-1.5">
                 <Navigation className="w-4 h-4 text-emerald-600" />
                 Vendedor en Monitoreo:
               </span>
@@ -470,7 +470,7 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
                     mapInstanceRef.current?.setView([-11.9870, -76.9980], 15, { animate: true });
                   }
                 }}
-                className="bg-slate-100 border border-slate-300 rounded px-2.5 py-1 text-xs font-semibold outline-none cursor-pointer"
+                className="bg-slate-100 dark:bg-slate-700 border border-slate-300 rounded px-2.5 py-1 text-xs font-semibold outline-none cursor-pointer"
               >
                 {vendedores.slice(0, 6).map((v) => (
                   <option key={v.id} value={v.id}>
@@ -479,7 +479,7 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
                 ))}
               </select>
 
-              <label className="flex items-center gap-1.5 ml-2 cursor-pointer select-none text-[11px] font-semibold text-slate-700">
+              <label className="flex items-center gap-1.5 ml-2 cursor-pointer select-none text-[11px] font-semibold text-slate-700 dark:text-slate-200">
                 <input
                   type="checkbox"
                   checked={showGeofences}
@@ -490,7 +490,7 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
               </label>
             </div>
 
-            <div className="flex items-center gap-3 text-[11px] text-[#45464d]">
+            <div className="flex items-center gap-3 text-[11px] text-[#45464d] dark:text-[#cbd5e1]">
               <span className="flex items-center gap-1">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> Concretado
               </span>
@@ -498,7 +498,7 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
                 <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span> En Proceso
               </span>
               <span className="flex items-center gap-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-slate-500"></span> Pendiente
+                <span className="w-2.5 h-2.5 rounded-full bg-slate-50 dark:bg-slate-8000"></span> Pendiente
               </span>
             </div>
           </div>
@@ -511,21 +511,21 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
             <div className="absolute top-4 right-4 z-20 flex flex-col gap-1.5 shadow-md">
               <button
                 onClick={handleZoomIn}
-                className="w-9 h-9 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 rounded-lg flex items-center justify-center font-bold text-lg shadow-sm transition-colors cursor-pointer"
+                className="w-9 h-9 bg-white dark:bg-[#1e293b] hover:bg-slate-50 dark:bg-slate-800 border border-slate-300 text-slate-800 rounded-lg flex items-center justify-center font-bold text-lg shadow-sm transition-colors cursor-pointer"
                 title="Acercar mapa (Zoom In)"
               >
-                <ZoomIn className="w-4 h-4 text-slate-700" />
+                <ZoomIn className="w-4 h-4 text-slate-700 dark:text-slate-200" />
               </button>
               <button
                 onClick={handleZoomOut}
-                className="w-9 h-9 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 rounded-lg flex items-center justify-center font-bold text-lg shadow-sm transition-colors cursor-pointer"
+                className="w-9 h-9 bg-white dark:bg-[#1e293b] hover:bg-slate-50 dark:bg-slate-800 border border-slate-300 text-slate-800 rounded-lg flex items-center justify-center font-bold text-lg shadow-sm transition-colors cursor-pointer"
                 title="Alejar mapa (Zoom Out)"
               >
-                <ZoomOut className="w-4 h-4 text-slate-700" />
+                <ZoomOut className="w-4 h-4 text-slate-700 dark:text-slate-200" />
               </button>
               <button
                 onClick={handleResetView}
-                className="w-9 h-9 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 rounded-lg flex items-center justify-center shadow-sm transition-colors cursor-pointer"
+                className="w-9 h-9 bg-white dark:bg-[#1e293b] hover:bg-slate-50 dark:bg-slate-800 border border-slate-300 text-slate-800 rounded-lg flex items-center justify-center shadow-sm transition-colors cursor-pointer"
                 title="Centrar en Los Olivos / SMP"
               >
                 <Crosshair className="w-4 h-4 text-emerald-700" />
@@ -544,7 +544,7 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
             <div className="absolute bottom-4 left-4 right-4 z-20 bg-slate-900/90 backdrop-blur-md border border-slate-700 rounded-xl p-3 text-white text-xs flex items-center justify-between flex-wrap gap-4 shadow-xl">
               <div className="flex items-center gap-6">
                 <div>
-                  <span className="text-[10px] text-slate-400 uppercase font-bold block">
+                  <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase font-bold block">
                     Avenidas Principales en Vista
                   </span>
                   <span className="text-xs font-semibold text-emerald-300">
@@ -552,13 +552,13 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
                   </span>
                 </div>
                 <div className="hidden sm:block border-l border-slate-700 pl-4">
-                  <span className="text-[10px] text-slate-400 uppercase font-bold block">
+                  <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase font-bold block">
                     Distancia Recorrida
                   </span>
                   <span className="text-sm font-bold font-mono text-emerald-400">18.4 km</span>
                 </div>
                 <div className="hidden sm:block border-l border-slate-700 pl-4">
-                  <span className="text-[10px] text-slate-400 uppercase font-bold block">
+                  <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase font-bold block">
                     Tiempo x Parada
                   </span>
                   <span className="text-sm font-bold font-mono">14.2 min</span>
@@ -575,51 +575,51 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
         </div>
 
         {/* Selected Store / Rep Detail Sidebar (col-span-1) */}
-        <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-5 rounded-xl shadow-xs flex flex-col justify-between">
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-5 rounded-xl shadow-xs flex flex-col justify-between">
           <div>
-            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#e0e3e5]">
+            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#e0e3e5] dark:border-[#334155]">
               <Store className="w-5 h-5 text-[#131b2e]" />
               <div>
-                <h3 className="font-bold text-sm text-[#191c1e]">Detalle de Punto de Venta</h3>
-                <p className="text-[11px] text-[#76777d]">Información de la parada seleccionada</p>
+                <h3 className="font-bold text-sm text-[#191c1e] dark:text-[#f1f5f9]">Detalle de Punto de Venta</h3>
+                <p className="text-[11px] text-[#76777d] dark:text-[#94a3b8]">Información de la parada seleccionada</p>
               </div>
             </div>
 
             {selectedPin ? (
               <div className="space-y-4">
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-500">Bodega / Cliente</span>
-                  <h4 className="font-bold text-base text-[#191c1e]">{selectedPin.clientName}</h4>
-                  <p className="text-xs text-[#45464d] flex items-center gap-1 mt-0.5 font-medium">
+                  <span className="text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500">Bodega / Cliente</span>
+                  <h4 className="font-bold text-base text-[#191c1e] dark:text-[#f1f5f9]">{selectedPin.clientName}</h4>
+                  <p className="text-xs text-[#45464d] dark:text-[#cbd5e1] flex items-center gap-1 mt-0.5 font-medium">
                     <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                     {selectedPin.address}
                   </p>
-                  <span className="inline-block mt-1 text-[10px] font-bold px-2 py-0.5 rounded bg-slate-200 text-slate-800">
+                  <span className="inline-block mt-1 text-[10px] font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-600 text-slate-800">
                     Sector: {selectedPin.district}
                   </span>
                 </div>
 
-                <div className="p-3 bg-white border border-[#e0e3e5] rounded-lg space-y-2 text-xs">
+                <div className="p-3 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-lg space-y-2 text-xs">
                   <div className="flex justify-between">
-                    <span className="text-slate-500">Estado de Visita:</span>
+                    <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Estado de Visita:</span>
                     <span className="font-bold text-emerald-700 capitalize">
                       {selectedPin.status}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-500">Hora Programada:</span>
+                    <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Hora Programada:</span>
                     <span className="font-mono font-semibold">{selectedPin.scheduledTime} hrs</span>
                   </div>
                   {selectedPin.completedTime && (
                     <div className="flex justify-between">
-                      <span className="text-slate-500">Hora Check-Out:</span>
+                      <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Hora Check-Out:</span>
                       <span className="font-mono font-semibold text-emerald-700">
                         {selectedPin.completedTime} hrs
                       </span>
                     </div>
                   )}
                   {selectedPin.orderTotal && (
-                    <div className="flex justify-between pt-1 border-t border-slate-100">
+                    <div className="flex justify-between pt-1 border-t border-slate-100 dark:border-slate-700">
                       <span className="font-bold text-slate-800">Pedido Facturado:</span>
                       <span className="font-mono font-bold text-emerald-700">
                         {formatSoles(selectedPin.orderTotal)}
@@ -636,9 +636,9 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
                 )}
 
                 {/* Nearby Avenues & References */}
-                <div className="p-3 bg-white border border-[#e0e3e5] rounded-lg text-xs text-slate-700">
+                <div className="p-3 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-lg text-xs text-slate-700 dark:text-slate-200">
                   <span className="font-bold block mb-1 text-slate-900">Avenidas y Referencias:</span>
-                  <ul className="text-[11px] space-y-0.5 text-slate-600 list-disc list-inside">
+                  <ul className="text-[11px] space-y-0.5 text-slate-600 dark:text-slate-300 list-disc list-inside">
                     <li>Cruce cercano: Av. Antúnez de Mayolo con Av. Las Palmeras</li>
                     <li>Paradero: Mercado Covida / Plaza Vea Izaguirre</li>
                     <li>Radio de Geocerca: 45 metros validado por satélite</li>
@@ -646,11 +646,11 @@ export const RutasMapasView: React.FC<RutasMapasViewProps> = ({
                 </div>
               </div>
             ) : (
-              <p className="text-xs text-slate-500">Selecciona un marcador en el mapa para ver el detalle de la parada.</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500">Selecciona un marcador en el mapa para ver el detalle de la parada.</p>
             )}
           </div>
 
-          <div className="pt-4 border-t border-[#e0e3e5] space-y-2">
+          <div className="pt-4 border-t border-[#e0e3e5] dark:border-[#334155] space-y-2">
             <button
               onClick={() => onCallVendedor(currentRep)}
               className="w-full py-2.5 bg-[#131b2e] hover:bg-black text-white text-xs font-bold rounded-lg flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-xs"

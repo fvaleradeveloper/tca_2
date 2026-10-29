@@ -95,19 +95,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
   };
 
   return (
-    <aside className={`fixed left-0 top-0 h-full w-72 bg-[#f2f4f6] border-r border-[#e0e3e5] z-50 flex flex-col pt-6 pb-6 select-none transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+    <aside className={`fixed left-0 top-0 h-full w-72 bg-[#f2f4f6] dark:bg-[#1e293b] border-r border-[#e0e3e5] dark:border-[#334155] z-50 flex flex-col pt-6 pb-6 select-none transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
       {/* Brand Header */}
       <div className="px-6 mb-5 flex items-center justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <span className="font-bold text-xl tracking-tight text-[#191c1e]">Total Calidad</span>
+            <span className="font-bold text-xl tracking-tight text-[#191c1e] dark:text-[#f1f5f9]">Total Calidad</span>
             <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-[#131b2e] text-white rounded">PRO</span>
           </div>
-          <p className="text-xs text-[#76777d] mt-0.5">Andean Logistics Intelligence</p>
+          <p className="text-xs text-[#76777d] dark:text-[#94a3b8] mt-0.5">Andean Logistics Intelligence</p>
         </div>
         <button
           onClick={onToggleSidebar}
-          className="p-1.5 rounded hover:bg-[#e6e8ea] text-[#45464d] transition-colors cursor-pointer"
+          className="p-1.5 rounded hover:bg-[#e6e8ea] dark:bg-[#475569] text-[#45464d] dark:text-[#cbd5e1] transition-colors cursor-pointer"
           title={isOpen ? 'Cerrar menú' : 'Abrir menú'}
         >
           {isOpen ? (
@@ -119,11 +119,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Role Badge Pill */}
-      <div className="mx-4 mb-4 px-3 py-2 bg-white border border-[#e0e3e5] rounded-lg flex items-center justify-between shadow-2xs">
+      <div className="mx-4 mb-4 px-3 py-2 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-lg flex items-center justify-between shadow-2xs">
         <div className="flex items-center gap-2">
           <Shield className="w-4 h-4 text-emerald-700" />
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 dark:text-slate-500 block">
               Nivel de Acceso
             </span>
             <span className="text-xs font-bold text-slate-900">
@@ -158,15 +158,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
             return (
               <div
                 key={item.id}
-                className="flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-medium text-slate-400 bg-slate-200/40 border border-transparent cursor-not-allowed select-none"
+                className="flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-medium text-slate-400 dark:text-slate-500 bg-slate-200 dark:bg-slate-600/40 border border-transparent cursor-not-allowed select-none"
                 title={`Acceso bloqueado: Requiere credenciales de nivel ${item.minRole}`}
               >
-                <div className="flex items-center text-slate-400">
+                <div className="flex items-center text-slate-400 dark:text-slate-500">
                   {item.icon}
                   <span className="line-through opacity-60">{item.label}</span>
                 </div>
-                <div className="flex items-center gap-1 text-[10px] text-slate-500 font-semibold">
-                  <Lock className="w-3 h-3 text-slate-400" />
+                <div className="flex items-center gap-1 text-[10px] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-semibold">
+                  <Lock className="w-3 h-3 text-slate-400 dark:text-slate-500" />
                   <span>{item.minRole}</span>
                 </div>
               </div>
@@ -183,11 +183,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
               className={`flex items-center justify-between px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-left cursor-pointer ${
                 isActive
                   ? 'bg-[#131b2e] text-white font-semibold shadow-sm'
-                  : 'text-[#45464d] hover:bg-[#e6e8ea] hover:text-[#191c1e]'
+                  : 'text-[#45464d] dark:text-[#cbd5e1] hover:bg-[#e6e8ea] dark:bg-[#475569] hover:text-[#191c1e] dark:text-[#f1f5f9]'
               }`}
             >
               <div className="flex items-center">
-                <span className={isActive ? 'text-white' : 'text-slate-500'}>{item.icon}</span>
+                <span className={isActive ? 'text-white' : 'text-slate-500 dark:text-slate-400 dark:text-slate-500'}>{item.icon}</span>
                 <span>{item.label}</span>
               </div>
               {item.badge && (
@@ -201,8 +201,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </nav>
 
       {/* Bottom Master Prompt Access */}
-      <div className="px-4 pt-4 border-t border-[#e0e3e5]">
-        <div className="mt-3 flex items-center justify-between text-[11px] text-[#76777d] px-1">
+      <div className="px-4 pt-4 border-t border-[#e0e3e5] dark:border-[#334155]">
+        <div className="mt-3 flex items-center justify-between text-[11px] text-[#76777d] dark:text-[#94a3b8] px-1">
           <span className="flex items-center gap-1">
             <span>Lima, PE</span>
           </span>

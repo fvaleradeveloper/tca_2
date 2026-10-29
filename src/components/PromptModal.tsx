@@ -25,7 +25,7 @@ export const PromptModal: React.FC<PromptModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-      <div className="bg-white rounded-xl shadow-2xl border border-slate-300 w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div className="bg-white dark:bg-[#1e293b] rounded-xl shadow-2xl border border-slate-300 w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 bg-[#131b2e] text-white">
           <div className="flex items-center gap-3">
@@ -49,7 +49,7 @@ export const PromptModal: React.FC<PromptModalProps> = ({
             </button>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-white transition-colors"
+              className="p-1.5 rounded-lg text-slate-400 dark:text-slate-500 hover:text-white transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -57,13 +57,13 @@ export const PromptModal: React.FC<PromptModalProps> = ({
         </div>
 
         {/* Tabs */}
-        <div className="flex items-center gap-4 px-6 py-2 bg-slate-100 border-b border-slate-200 text-xs font-semibold">
+        <div className="flex items-center gap-4 px-6 py-2 bg-slate-100 dark:bg-slate-700 border-b border-slate-200 dark:border-slate-600 text-xs font-semibold">
           <button
             onClick={() => setActiveTab('prompt')}
             className={`flex items-center gap-1.5 py-1.5 px-3 rounded-md transition-colors ${
               activeTab === 'prompt'
-                ? 'bg-white text-slate-900 shadow-xs font-bold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-white dark:bg-[#1e293b] text-slate-900 shadow-xs font-bold'
+                : 'text-slate-600 dark:text-slate-300 hover:text-slate-900'
             }`}
           >
             <Terminal className="w-3.5 h-3.5" />
@@ -73,8 +73,8 @@ export const PromptModal: React.FC<PromptModalProps> = ({
             onClick={() => setActiveTab('architecture')}
             className={`flex items-center gap-1.5 py-1.5 px-3 rounded-md transition-colors ${
               activeTab === 'architecture'
-                ? 'bg-white text-slate-900 shadow-xs font-bold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-white dark:bg-[#1e293b] text-slate-900 shadow-xs font-bold'
+                : 'text-slate-600 dark:text-slate-300 hover:text-slate-900'
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
@@ -83,7 +83,7 @@ export const PromptModal: React.FC<PromptModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 bg-slate-50 font-mono text-xs">
+        <div className="flex-1 overflow-y-auto p-6 bg-slate-50 dark:bg-slate-800 font-mono text-xs">
           {activeTab === 'prompt' ? (
             <div className="bg-slate-950 text-slate-100 p-5 rounded-xl border border-slate-800 shadow-inner leading-relaxed whitespace-pre-wrap select-all">
               {promptText}
@@ -108,44 +108,44 @@ export const PromptModal: React.FC<PromptModalProps> = ({
                 </div>
               </div>
 
-              <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <div className="p-4 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-600 rounded-lg">
                 <h4 className="font-bold text-sm text-slate-900 mb-2">1. Vista Supervisor (Supervisión Operativa)</h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-slate-600 dark:text-slate-300">
                   Implementación exacta de la pantalla mostrada en el diseño: Mesa de Trabajo Lima Norte - Alfa, 4 KPIs operativos (Venta total S/. 148,250 con meta S/. 135k, Cumplimiento 94.8%, 12/12 Vendedores activos, Asistencia diaria 96.5%), gráfico de barras segmentadas por marcas (Nestlé, Alicorp, Gloria) vs categorías, Alertas de mesa con botón para Enviar Broadcast, y Ranking Detallado con tabla de asistencia, cuotas, efectividad y acciones rápidas (Llamar y Registrar Asistencia).
                 </p>
               </div>
 
-              <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <div className="p-4 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-600 rounded-lg">
                 <h4 className="font-bold text-sm text-slate-900 mb-2">2. Dashboard Comercial</h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-slate-600 dark:text-slate-300">
                   Visión macro de ventas por canal, volumen mensual consolidado, drop size promedio por pedido, participación de mercado por líneas líderes y velocidad de rotación de inventario en almacenes de Lima.
                 </p>
               </div>
 
-              <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <div className="p-4 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-600 rounded-lg">
                 <h4 className="font-bold text-sm text-slate-900 mb-2">3. Vista Vendedor</h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-slate-600 dark:text-slate-300">
                   Herramienta de campo del representante comercial (Carlos Gomez - Ruta Norte-A): Cuota diaria del vendedor, hoja de ruta de visitas a bodegas y minimarkets de Los Olivos y SMP, toma de pedidos por SKU y cálculo de comisiones.
                 </p>
               </div>
 
-              <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <div className="p-4 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-600 rounded-lg">
                 <h4 className="font-bold text-sm text-slate-900 mb-2">4. Vista Gerencia</h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-slate-600 dark:text-slate-300">
                   Consolidador directivo para Gerencia Comercial y de Operaciones: Comparativo entre Lima Norte, Lima Sur, Lima Este y Lima Centro, margen bruto (28.4%), cumplimiento de márgenes y asignación de presupuestos.
                 </p>
               </div>
 
-              <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <div className="p-4 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-600 rounded-lg">
                 <h4 className="font-bold text-sm text-slate-900 mb-2">5. Rutas y Mapas</h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-slate-600 dark:text-slate-300">
                   Monitoreo geográfico y GPS en tiempo real de los vendedores y puntos de entrega en Lima Metropolitana, estado de visitas con geocercas, tiempos de parada y alertas de desvío de ruta.
                 </p>
               </div>
 
-              <div className="p-4 bg-white border border-slate-200 rounded-lg">
+              <div className="p-4 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-600 rounded-lg">
                 <h4 className="font-bold text-sm text-slate-900 mb-2">6. Reportes & Exportar</h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-slate-600 dark:text-slate-300">
                   Módulo de extracción analítica con generador de consultas por fecha/zona/marca y descarga real a archivo Excel/CSV y vista para impresión PDF.
                 </p>
               </div>
@@ -154,7 +154,7 @@ export const PromptModal: React.FC<PromptModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-3 bg-white border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+        <div className="px-6 py-3 bg-white dark:bg-[#1e293b] border-t border-slate-200 dark:border-slate-600 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500">
           <span>Sistema: Total Calidad v2.4 (Andean Logistics)</span>
           <button
             onClick={handleCopy}

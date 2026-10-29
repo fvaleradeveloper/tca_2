@@ -42,7 +42,7 @@ export const CallModal: React.FC<CallModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4">
-      <div className="bg-white rounded-xl shadow-2xl border border-[#d8dadc] w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div className="bg-white dark:bg-[#1e293b] rounded-xl shadow-2xl border border-[#d8dadc] dark:border-[#475569] w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         <div className="flex items-center justify-between px-5 py-4 bg-[#131b2e] text-white">
           <div className="flex items-center gap-2.5">
             <Phone className="w-4 h-4 text-emerald-400" />
@@ -51,25 +51,25 @@ export const CallModal: React.FC<CallModalProps> = ({
               <p className="text-[11px] text-slate-300">{vendedor.name} · {vendedor.route}</p>
             </div>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-white p-1 rounded">
+          <button onClick={onClose} className="text-slate-400 dark:text-slate-500 hover:text-white p-1 rounded">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <div className="p-5 flex flex-col gap-4">
           {/* Rep Summary card */}
-          <div className="flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-lg">
+          <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[#131b2e] text-white flex items-center justify-center font-bold text-sm">
                 {vendedor.initials}
               </div>
               <div>
                 <p className="font-bold text-xs text-slate-900">{vendedor.name}</p>
-                <p className="text-[11px] text-slate-500 font-mono">{vendedor.phone}</p>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-mono">{vendedor.phone}</p>
               </div>
             </div>
             <div className="text-right">
-              <span className="text-[11px] text-slate-500 block">Efectividad Visitas</span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 dark:text-slate-500 block">Efectividad Visitas</span>
               <span className="text-xs font-bold text-slate-900">
                 {Math.round((vendedor.completedVisits / vendedor.totalVisits) * 100)}% ({vendedor.completedVisits}/{vendedor.totalVisits})
               </span>
@@ -112,7 +112,7 @@ export const CallModal: React.FC<CallModalProps> = ({
             )}
 
             {callStatus === 'completed' && (
-              <div className="p-3 bg-slate-100 rounded-lg text-xs font-semibold text-slate-700">
+              <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg text-xs font-semibold text-slate-700 dark:text-slate-200">
                 Llamada completada (Duración: 1m 15s)
               </div>
             )}
@@ -120,8 +120,8 @@ export const CallModal: React.FC<CallModalProps> = ({
 
           {/* Quick Call Note */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
-              <MessageSquare className="w-3.5 h-3.5 text-slate-500" />
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1 flex items-center gap-1.5">
+              <MessageSquare className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 dark:text-slate-500" />
               <span>Bitácora de Supervisión (Opcional)</span>
             </label>
             <textarea
@@ -133,7 +133,7 @@ export const CallModal: React.FC<CallModalProps> = ({
             />
           </div>
 
-          <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+          <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-700">
             <button
               onClick={handleSaveAndClose}
               className="px-4 py-2 text-xs font-bold bg-[#131b2e] text-white rounded-lg hover:bg-black transition-colors"

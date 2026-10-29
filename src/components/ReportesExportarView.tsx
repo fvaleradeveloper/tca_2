@@ -80,15 +80,15 @@ export const ReportesExportarView: React.FC<ReportesExportarViewProps> = ({
   return (
     <div className="flex flex-col w-full gap-6 pb-20">
       {/* Title */}
-      <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-6 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
+      <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-6 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
         <div>
-          <span className="text-xs uppercase tracking-wider text-[#45464d] font-bold">
+          <span className="text-xs uppercase tracking-wider text-[#45464d] dark:text-[#cbd5e1] font-bold">
             Auditoría Comercial & Exportación
           </span>
-          <h1 className="text-2xl font-bold text-[#191c1e] tracking-tight">
+          <h1 className="text-2xl font-bold text-[#191c1e] dark:text-[#f1f5f9] tracking-tight">
             Centro de Reportes y Descargas
           </h1>
-          <p className="text-sm text-[#45464d]">
+          <p className="text-sm text-[#45464d] dark:text-[#cbd5e1]">
             Construcción de consultas personalizadas, liquidación de rutas y exportación a Excel / CSV.
           </p>
         </div>
@@ -96,7 +96,7 @@ export const ReportesExportarView: React.FC<ReportesExportarViewProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={handlePrint}
-            className="px-3.5 py-2 bg-white border border-[#c6c6cd] hover:bg-slate-100 text-[#191c1e] text-xs font-bold rounded-lg shadow-2xs flex items-center gap-1.5 cursor-pointer transition-colors"
+            className="px-3.5 py-2 bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] hover:bg-slate-100 dark:bg-slate-700 text-[#191c1e] dark:text-[#f1f5f9] text-xs font-bold rounded-lg shadow-2xs flex items-center gap-1.5 cursor-pointer transition-colors"
           >
             <Printer className="w-3.5 h-3.5" />
             <span>Imprimir Vista</span>
@@ -119,21 +119,21 @@ export const ReportesExportarView: React.FC<ReportesExportarViewProps> = ({
       )}
 
       {/* Query Filters */}
-      <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-6 rounded-xl shadow-xs">
-        <h3 className="text-xs font-bold text-[#45464d] uppercase tracking-wider mb-4 flex items-center gap-1.5">
+      <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-6 rounded-xl shadow-xs">
+        <h3 className="text-xs font-bold text-[#45464d] dark:text-[#cbd5e1] uppercase tracking-wider mb-4 flex items-center gap-1.5">
           <Filter className="w-3.5 h-3.5" />
           <span>Parámetros de Consulta</span>
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
-            <label className="block text-[11px] font-semibold text-[#45464d] mb-1">
+            <label className="block text-[11px] font-semibold text-[#45464d] dark:text-[#cbd5e1] mb-1">
               Tipo de Informe
             </label>
             <select
               value={reportType}
               onChange={(e) => setReportType(e.target.value)}
-              className="w-full bg-white border border-[#c6c6cd] rounded-lg px-3 py-2 text-xs font-semibold text-[#191c1e] outline-none shadow-2xs"
+              className="w-full bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg px-3 py-2 text-xs font-semibold text-[#191c1e] dark:text-[#f1f5f9] outline-none shadow-2xs"
             >
               <option value="Cierre Diario Operativo">Cierre Diario Operativo</option>
               <option value="Liquidación de Preventa">Liquidación de Preventa</option>
@@ -143,13 +143,13 @@ export const ReportesExportarView: React.FC<ReportesExportarViewProps> = ({
           </div>
 
           <div>
-            <label className="block text-[11px] font-semibold text-[#45464d] mb-1">
+            <label className="block text-[11px] font-semibold text-[#45464d] dark:text-[#cbd5e1] mb-1">
               Filtrar por Zona
             </label>
             <select
               value={selectedZone}
               onChange={(e) => setSelectedZone(e.target.value)}
-              className="w-full bg-white border border-[#c6c6cd] rounded-lg px-3 py-2 text-xs font-semibold text-[#191c1e] outline-none shadow-2xs"
+              className="w-full bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg px-3 py-2 text-xs font-semibold text-[#191c1e] dark:text-[#f1f5f9] outline-none shadow-2xs"
             >
               <option value="Todas">Todas las Zonas</option>
               <option value="Lima Norte">Lima Norte</option>
@@ -160,13 +160,13 @@ export const ReportesExportarView: React.FC<ReportesExportarViewProps> = ({
           </div>
 
           <div>
-            <label className="block text-[11px] font-semibold text-[#45464d] mb-1">
+            <label className="block text-[11px] font-semibold text-[#45464d] dark:text-[#cbd5e1] mb-1">
               Línea de Fabricante
             </label>
             <select
               value={selectedBrand}
               onChange={(e) => setSelectedBrand(e.target.value)}
-              className="w-full bg-white border border-[#c6c6cd] rounded-lg px-3 py-2 text-xs font-semibold text-[#191c1e] outline-none shadow-2xs"
+              className="w-full bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg px-3 py-2 text-xs font-semibold text-[#191c1e] dark:text-[#f1f5f9] outline-none shadow-2xs"
             >
               <option value="Todas">Todas las Líneas</option>
               <option value="Nestle">Nestlé Perú</option>
@@ -176,13 +176,13 @@ export const ReportesExportarView: React.FC<ReportesExportarViewProps> = ({
           </div>
 
           <div>
-            <label className="block text-[11px] font-semibold text-[#45464d] mb-1">
+            <label className="block text-[11px] font-semibold text-[#45464d] dark:text-[#cbd5e1] mb-1">
               Rango de Fecha
             </label>
             <input
               type="date"
               defaultValue="2023-10-24"
-              className="w-full bg-white border border-[#c6c6cd] rounded-lg px-3 py-2 text-xs font-semibold text-[#191c1e] outline-none shadow-2xs"
+              className="w-full bg-white dark:bg-[#1e293b] border border-[#c6c6cd] dark:border-[#475569] rounded-lg px-3 py-2 text-xs font-semibold text-[#191c1e] dark:text-[#f1f5f9] outline-none shadow-2xs"
             />
           </div>
         </div>
@@ -190,16 +190,16 @@ export const ReportesExportarView: React.FC<ReportesExportarViewProps> = ({
 
       {/* Preview Summary Strip */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="p-4 bg-white border border-[#e0e3e5] rounded-xl shadow-xs">
-          <span className="text-[11px] text-slate-500 font-bold uppercase">Registros Filtrados</span>
-          <p className="text-xl font-bold font-mono text-[#191c1e] mt-1">{filtered.length} Vendedores</p>
+        <div className="p-4 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-xl shadow-xs">
+          <span className="text-[11px] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-bold uppercase">Registros Filtrados</span>
+          <p className="text-xl font-bold font-mono text-[#191c1e] dark:text-[#f1f5f9] mt-1">{filtered.length} Vendedores</p>
         </div>
-        <div className="p-4 bg-white border border-[#e0e3e5] rounded-xl shadow-xs">
-          <span className="text-[11px] text-slate-500 font-bold uppercase">Facturación Total del Reporte</span>
-          <p className="text-xl font-bold font-mono text-[#191c1e] mt-1">{formatSoles(totalFilteredSales)}</p>
+        <div className="p-4 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-xl shadow-xs">
+          <span className="text-[11px] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-bold uppercase">Facturación Total del Reporte</span>
+          <p className="text-xl font-bold font-mono text-[#191c1e] dark:text-[#f1f5f9] mt-1">{formatSoles(totalFilteredSales)}</p>
         </div>
-        <div className="p-4 bg-white border border-[#e0e3e5] rounded-xl shadow-xs">
-          <span className="text-[11px] text-slate-500 font-bold uppercase">Régimen Fiscal</span>
+        <div className="p-4 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-xl shadow-xs">
+          <span className="text-[11px] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-bold uppercase">Régimen Fiscal</span>
           <p className="text-xl font-bold font-mono text-emerald-700 mt-1">
             {withIGV ? 'Valores con IGV (18%)' : 'Valores Base (Sin IGV)'}
           </p>
@@ -207,13 +207,13 @@ export const ReportesExportarView: React.FC<ReportesExportarViewProps> = ({
       </div>
 
       {/* Data Table Preview */}
-      <div className="bg-[#f2f4f6] border border-[#e0e3e5] p-6 rounded-xl shadow-xs">
+      <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-6 rounded-xl shadow-xs">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm font-bold text-[#191c1e] flex items-center gap-2">
-            <Table className="w-4 h-4 text-slate-500" />
+          <h3 className="text-sm font-bold text-[#191c1e] dark:text-[#f1f5f9] flex items-center gap-2">
+            <Table className="w-4 h-4 text-slate-500 dark:text-slate-400 dark:text-slate-500" />
             <span>Vista Previa de la Consulta ({reportType})</span>
           </h3>
-          <span className="text-xs text-[#76777d]">Formato de exportación listo para Excel</span>
+          <span className="text-xs text-[#76777d] dark:text-[#94a3b8]">Formato de exportación listo para Excel</span>
         </div>
 
         <div className="overflow-x-auto">
@@ -235,10 +235,10 @@ export const ReportesExportarView: React.FC<ReportesExportarViewProps> = ({
                 const comp = Math.round((v.currentSales / v.quotaTarget) * 100);
                 const eff = Math.round((v.completedVisits / v.totalVisits) * 100);
                 return (
-                  <tr key={v.id} className="hover:bg-white/60">
-                    <td className="py-3 px-3 font-semibold text-[#191c1e]">{v.name}</td>
+                  <tr key={v.id} className="hover:bg-white dark:bg-[#1e293b]/60">
+                    <td className="py-3 px-3 font-semibold text-[#191c1e] dark:text-[#f1f5f9]">{v.name}</td>
                     <td className="py-3 px-3">{v.route}</td>
-                    <td className="py-3 px-3 text-slate-600">{v.zone}</td>
+                    <td className="py-3 px-3 text-slate-600 dark:text-slate-300">{v.zone}</td>
                     <td className="py-3 px-3">
                       <span
                         className={`px-2 py-0.5 rounded text-[10px] font-bold ${
@@ -250,10 +250,10 @@ export const ReportesExportarView: React.FC<ReportesExportarViewProps> = ({
                         {v.attendanceStatus} ({v.checkInTime})
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-right font-mono font-bold text-[#191c1e]">
+                    <td className="py-3 px-3 text-right font-mono font-bold text-[#191c1e] dark:text-[#f1f5f9]">
                       {formatSoles(v.currentSales)}
                     </td>
-                    <td className="py-3 px-3 text-right font-mono text-slate-600">
+                    <td className="py-3 px-3 text-right font-mono text-slate-600 dark:text-slate-300">
                       {formatSoles(v.quotaTarget)}
                     </td>
                     <td className="py-3 px-3 text-center font-mono font-bold">
