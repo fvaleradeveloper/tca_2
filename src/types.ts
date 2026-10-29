@@ -1,6 +1,6 @@
 export type Role = 'Gerencia' | 'Supervisor' | 'Vendedor';
 export type LimaZone = 'Todas las Zonas' | 'Lima Norte' | 'Lima Sur' | 'Lima Este' | 'Lima Centro';
-export type ScreenView = 'dashboard' | 'vendedor' | 'supervisor' | 'gerencia' | 'mapas' | 'reportes' | 'concursos';
+export type ScreenView = 'dashboard' | 'vendedor' | 'supervisor' | 'gerencia' | 'mapas' | 'reportes' | 'concursos' | 'maestros';
 
 export interface Vendedor {
   id: string;
@@ -117,4 +117,65 @@ export interface Producto {
   artId: string;
   descripcion: string;
   ventaConIGV: number;
+}
+
+export interface ProductoMaestro {
+  id: string;
+  codigo: string;
+  descripcion: string;
+  marca: string;
+  proveedor: string;
+  categoria: string;
+  precioVenta: number;
+  precioCosto: number;
+  stock: number;
+  unidad: string;
+  igv: boolean;
+  activo: boolean;
+}
+
+export type TipoCliente = 'Bodega' | 'Minimarket' | 'Supermercado' | 'Mayorista' | 'Hotel/Restaurante';
+export interface Cliente {
+  id: string;
+  codigo: string;
+  razonSocial: string;
+  ruc: string;
+  tipo: TipoCliente;
+  direccion: string;
+  distrito: string;
+  zona: string;
+  telefono: string;
+  celular: string;
+  email: string;
+  vendedorAsignado: string;
+  vendedorId: string;
+  formaPago: 'Contado' | 'Crédito 7' | 'Crédito 15' | 'Crédito 30';
+  lineaCredito: number;
+  saldo: number;
+  activo: boolean;
+  fechaRegistro: string;
+  observaciones: string;
+}
+
+export type EmpleadoRol = 'Vendedor' | 'Supervisor' | 'Auxiliar' | 'Jefe de Ventas' | 'Cobrador' | 'Logística' | 'Administrativo';
+export interface Empleado {
+  id: string;
+  codigo: string;
+  nombres: string;
+  apellidos: string;
+  dni: string;
+  rol: EmpleadoRol;
+  cargo: string;
+  telefono: string;
+  celular: string;
+  email: string;
+  zona: string;
+  supervisorId?: string;
+  supervisorNombre?: string;
+  fechaIngreso: string;
+  sueldoBase: number;
+  comisionPorcentaje: number;
+  activo: boolean;
+  direccion: string;
+  distrito: string;
 }

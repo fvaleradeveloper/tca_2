@@ -8,6 +8,7 @@ import {
   MapPin, 
   FileSpreadsheet,
   Trophy,
+  Database,
   Lock,
   Shield,
   Menu,
@@ -83,6 +84,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
       id: 'concursos',
       label: 'Concursos',
       icon: <Trophy className="w-4 h-4 mr-2.5" />,
+      minRole: 'Supervisor',
+    },
+    {
+      id: 'maestros',
+      label: 'Maestros (CRUD)',
+      icon: <Database className="w-4 h-4 mr-2.5" />,
       minRole: 'Supervisor',
     },
   ];

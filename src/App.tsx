@@ -10,6 +10,7 @@ import { GerenciaView } from './components/GerenciaView';
 import { RutasMapasView } from './components/RutasMapasView';
 import { ReportesExportarView } from './components/ReportesExportarView';
 import { ConcursosView } from './components/ConcursosView';
+import { MaestrosView } from './components/MaestrosView';
 import { BroadcastModal } from './components/BroadcastModal';
 import { CallModal } from './components/CallModal';
 import { AttendanceModal } from './components/AttendanceModal';
@@ -346,6 +347,10 @@ export default function App() {
 
               {currentView === 'concursos' && (
                 <ConcursosView />
+              )}
+
+              {currentView === 'maestros' && (
+                <MaestrosView />
               )}
             </>
           )}
