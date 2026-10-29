@@ -7,6 +7,7 @@ import {
   Building2, 
   MapPin, 
   FileSpreadsheet,
+  Trophy,
   Lock,
   Shield,
   Menu,
@@ -76,6 +77,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
       id: 'reportes',
       label: 'Reportes & Exportar',
       icon: <FileSpreadsheet className="w-4 h-4 mr-2.5" />,
+      minRole: 'Supervisor',
+    },
+    {
+      id: 'concursos',
+      label: 'Concursos',
+      icon: <Trophy className="w-4 h-4 mr-2.5" />,
       minRole: 'Supervisor',
     },
   ];

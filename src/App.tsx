@@ -9,6 +9,7 @@ import { VendedorView } from './components/VendedorView';
 import { GerenciaView } from './components/GerenciaView';
 import { RutasMapasView } from './components/RutasMapasView';
 import { ReportesExportarView } from './components/ReportesExportarView';
+import { ConcursosView } from './components/ConcursosView';
 import { BroadcastModal } from './components/BroadcastModal';
 import { CallModal } from './components/CallModal';
 import { AttendanceModal } from './components/AttendanceModal';
@@ -315,11 +316,15 @@ export default function App() {
                 />
               )}
 
-              {currentView === 'reportes' && (
+               {currentView === 'reportes' && (
                 <ReportesExportarView
                   vendedores={vendedores}
                   withIGV={withIGV}
                 />
+              )}
+
+              {currentView === 'concursos' && (
+                <ConcursosView />
               )}
             </>
           )}

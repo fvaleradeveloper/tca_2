@@ -1,6 +1,6 @@
 export type Role = 'Gerencia' | 'Supervisor' | 'Vendedor';
 export type LimaZone = 'Todas las Zonas' | 'Lima Norte' | 'Lima Sur' | 'Lima Este' | 'Lima Centro';
-export type ScreenView = 'dashboard' | 'vendedor' | 'supervisor' | 'gerencia' | 'mapas' | 'reportes';
+export type ScreenView = 'dashboard' | 'vendedor' | 'supervisor' | 'gerencia' | 'mapas' | 'reportes' | 'concursos';
 
 export interface Vendedor {
   id: string;
@@ -61,4 +61,60 @@ export interface KPIStats {
   totalReps: number;
   dailyAttendance: number;
   attendanceTarget: number;
+}
+
+export type MedicionConcurso = 'Venta en soles' | 'Clientes (coberturas)' | 'Otro (meta en texto)';
+export type UnidadMeta = string;
+export type TipoPremio = 'Soles' | 'Producto' | 'Personal';
+export type FormaPago = 'Monto fijo' | 'Por cada cliente o unidad';
+export type AmbitoCompra = string;
+export type TipoCandado = 'Sí' | 'No';
+
+export interface EscalaConcurso {
+  id: string;
+  meta: number | string;
+  premio: number | string;
+}
+
+export interface Concurso {
+  id: string;
+  nro: number;
+  proveedor: string;
+  nombre: string;
+  logo: string;
+  tabla: string;
+  columnaTabla: string;
+  queSeMide: MedicionConcurso;
+  metaTexto: string;
+  unidadMeta: UnidadMeta;
+  incluyeIGV: boolean;
+  compraMinimaCliente: number;
+  compraMinimaEn: string;
+  enPedidoOMes: AmbitoCompra;
+  tieneCandado: TipoCandado;
+  minimoCandado: number;
+  unidadCandado: string;
+  escalas: EscalaConcurso[];
+  premioEn: TipoPremio;
+  productoPremio: string;
+  comoSePaga: FormaPago;
+  topePremio: number;
+  rankingN: number;
+  productosQueCuentan: string;
+  quienesParticipan: string;
+  desde: string;
+  hasta: string;
+  notasVendedor: string[];
+  notasInternas: string;
+  revision: string;
+  asiLoVeVendedor: string;
+  premioMaximo: number;
+}
+
+export interface Producto {
+  proveedor: string;
+  marca: string;
+  artId: string;
+  descripcion: string;
+  ventaConIGV: number;
 }
