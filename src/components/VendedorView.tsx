@@ -38,6 +38,10 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
     return `S/. ${Math.round(val).toLocaleString('en-US')}`;
   };
 
+  const formatSolesFijo = (amount: number) => {
+    return `S/. ${Math.round(amount).toLocaleString('en-US')}`;
+  };
+
   const handleRegisterOrder = (e: React.FormEvent) => {
     e.preventDefault();
     const skuPrices: Record<string, number> = {
@@ -135,12 +139,12 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
             <div className="p-3 sm:p-4 bg-white border border-[#e0e3e5] rounded-lg">
               <div className="flex justify-between text-xs sm:text-sm text-slate-600 mb-1">
                 <span>Subtotal Estimado:</span>
-                <span className="font-mono">{formatSoles(newOrderQty * 95)}</span>
+                <span className="font-mono">{formatSolesFijo(newOrderQty * 95)}</span>
               </div>
               <div className="flex justify-between text-xs sm:text-sm font-bold text-[#191c1e] pt-1 border-t border-slate-100">
                 <span>Total con IGV (18%):</span>
                 <span className="font-mono text-emerald-700">
-                  {formatSoles(newOrderQty * 95 * 1.18)}
+                  {formatSolesFijo(newOrderQty * 95 * 1.18)}
                 </span>
               </div>
             </div>
