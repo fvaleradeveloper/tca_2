@@ -117,6 +117,16 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
 
+          {/* Theme Toggle */}
+          <button
+            onClick={onToggleTheme}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#eceef0] dark:bg-[#334155] border border-[#d8dadc] dark:border-[#475569] text-[#45464d] dark:text-[#cbd5e1] hover:text-[#191c1e] dark:hover:text-[#f1f5f9] transition-colors cursor-pointer shadow-xs"
+            title={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
+          >
+            {theme === 'dark' ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+            <span className="text-xs font-semibold">{theme === 'dark' ? 'Claro' : 'Oscuro'}</span>
+          </button>
+
           {/* Lima Zone Selector */}
           <div className="flex items-center bg-[#eceef0] dark:bg-[#334155] border border-[#d8dadc] dark:border-[#475569] rounded-lg px-2 py-1 shadow-xs">
             <span className="text-xs font-semibold text-[#45464d] dark:text-[#cbd5e1] px-1.5">Lima:</span>
@@ -136,14 +146,6 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right controls */}
         <div className="flex items-center gap-3 relative">
-          {/* Theme toggle */}
-          <button
-            onClick={onToggleTheme}
-            className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#e6e8ea] dark:hover:bg-[#475569] text-[#45464d] dark:text-[#cbd5e1] transition-colors cursor-pointer"
-            title={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
-          >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
           {/* Notifications button */}
           <div className="relative">
             <button
