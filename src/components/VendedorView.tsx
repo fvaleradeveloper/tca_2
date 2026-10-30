@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Vendedor, ClientVisit } from '../types';
+import { Vendedor, ClientVisit, ProductoMaestro } from '../types';
 import { CARLOS_GOMEZ_VISITS } from '../data/mockData';
 import { 
   CheckCircle2, 
@@ -11,7 +11,8 @@ import {
   AlertCircle,
   FileText,
   DollarSign,
-  Phone
+  Phone,
+  Plus
 } from 'lucide-react';
 
 interface VendedorViewProps {
@@ -19,6 +20,7 @@ interface VendedorViewProps {
   selectedVendedor: Vendedor;
   onSelectVendedor: (v: Vendedor) => void;
   allVendedores: Vendedor[];
+  productosMaestros?: ProductoMaestro[];
 }
 
 export const VendedorView: React.FC<VendedorViewProps> = ({
@@ -26,12 +28,14 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
   selectedVendedor,
   onSelectVendedor,
   allVendedores,
+  productosMaestros = [],
 }) => {
   const [visits, setVisits] = useState<ClientVisit[]>(CARLOS_GOMEZ_VISITS);
   const [selectedVisit, setSelectedVisit] = useState<ClientVisit>(visits[4]); // Abarrotes Doña Juana (in progress)
-  const [newOrderSKU, setNewOrderSKU] = useState('Gloria Azul 400g');
+  const [newOrderSKU, setNewOrderSKU] = useState(productosMaestros[0]?.descripcion || 'Producto Demo');
   const [newOrderQty, setNewOrderQty] = useState(10);
   const [orderRegisteredMessage, setOrderRegisteredMessage] = useState(false);
+  const [showNewProduct, setShowNewProduct] = useState(false);
 
   const formatSoles = (amountWithIGV: number) => {
     const val = withIGV ? amountWithIGV : amountWithIGV / 1.18;
@@ -93,19 +97,43 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
         ) : (
           <form onSubmit={handleRegisterOrder} className="space-y-3 sm:space-y-4 w-full">
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#45464d] dark:text-[#cbd5e1] mb-1">
-                Seleccionar Producto / Línea
-              </label>
+              <div className="flex items-center justify-between mb-1">
+                <label className="block text-xs sm:text-sm font-semibold text-[#45464d] dark:text-[#cbd5e1]">
+                  Seleccionar Producto / Línea
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setShowNewProduct(!showNewProduct)}
+                  className="flex items-center gap-1 text-xs font-bold text-[#131b2e] dark:text-[#f1f5f9] hover:underline"
+                >
+                  <Plus className="w-3 h-3" />
+                  Nuevo producto
+                </button>
+              </div>
               <select
                 value={newOrderSKU}
                 onChange={(e) => setNewOrderSKU(e.target.value)}
                 className="w-full text-sm font-semibold p-2 sm:p-2.5 rounded-lg border border-[#c6c6cd] dark:border-[#475569] bg-white dark:bg-[#1e293b] outline-none text-[#191c1e] dark:text-[#f1f5f9]"
               >
-                <option value="Gloria Azul 400g">Leche Gloria Azul 400g (Pack x24)</option>
-                <option value="Primor Clásico 900ml">Aceite Primor Clásico 900ml (Caja x12)</option>
-                <option value="Nescafé Tradición 50g">Nescafé Tradición 50g (Display x24)</option>
-                <option value="Fideos Don Vittorio 450g">Fideos Don Vittorio 450g (Fardo x20)</option>
+                {productosMaestros.length > 0 ? (
+                  productosMaestros.map((p) => (
+                    <option key={p.id} value={p.descripcion}>
+                      {p.descripcion} {p.marca ? `(${p.marca})` : ''}
+                    </option>
+                  ))
+                ) : (
+                  <>
+                    <option value="Producto Demo 1">Producto Demo 1</option>
+                    <option value="Producto Demo 2">Producto Demo 2</option>
+                    <option value="Producto Demo 3">Producto Demo 3</option>
+                  </>
+                )}
               </select>
+              {showNewProduct && (
+                <div className="mt-2 p-2 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-lg text-xs text-[#45464d] dark:text-[#cbd5e1]">
+                  Nuevo producto se gestiona desde Maestros / CRUD → Productos
+                </div>
+              )}
             </div>
 
             <div>

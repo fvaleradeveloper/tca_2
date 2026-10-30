@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Role, LimaZone, ScreenView, Vendedor, MesaAlert } from './types';
+import { Role, LimaZone, ScreenView, Vendedor, MesaAlert, ProductoMaestro, Cliente, Empleado } from './types';
 import { INITIAL_VENDEDORES, INITIAL_ALERTS } from './data/mockData';
+import { PRODUCTOS } from './data/productosData';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { SupervisorView } from './components/SupervisorView';
@@ -131,8 +132,8 @@ export default function App() {
   const [currentRole, setCurrentRole] = useState<Role>('Supervisor');
   const [withIGV, setWithIGV] = useState<boolean>(true);
   const [selectedZone, setSelectedZone] = useState<LimaZone>('Lima Norte');
-  const [selectedSupervisor, setSelectedSupervisor] = useState<string>('Carlos Mendoza (Líder Alfa)');
-  const [selectedDate, setSelectedDate] = useState<string>('2023-10-24');
+  const [selectedSupervisor, setSelectedSupervisor] = useState<string>('Supervisor Demo');
+  const [selectedDate, setSelectedDate] = useState<string>('2026-10-30');
 
   // Theme state
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -156,12 +157,131 @@ export default function App() {
   // Sidebar state
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Vendedores State
-  const [vendedores, setVendedores] = useState<Vendedor[]>(INITIAL_VENDEDORES);
-  const [alerts, setAlerts] = useState<MesaAlert[]>(INITIAL_ALERTS);
+  // Maestros State (centralizado)
+  const [productosMaestros, setProductosMaestros] = useState<ProductoMaestro[]>(PRODUCTOS.slice(0, 20).map((p, i) => ({
+    id: `pm-${i + 1}`,
+    codigo: p.artId,
+    descripcion: p.descripcion,
+    marca: p.marca,
+    proveedor: p.proveedor,
+    categoria: 'General',
+    precioVenta: Math.round(p.ventaConIGV * 0.85 * 100) / 100,
+    precioCosto: Math.round(p.ventaConIGV * 0.7 * 100) / 100,
+    stock: Math.floor(Math.random() * 500) + 10,
+    unidad: 'UND',
+    igv: true,
+    activo: true,
+  })));
+  const [clientesMaestros, setClientesMaestros] = useState<Cliente[]>([
+    {
+      id: 'cli-1',
+      codigo: 'CL-0001',
+      razonSocial: 'Bodega El Amanecer',
+      ruc: '20111111111',
+      tipo: 'Bodega',
+      direccion: 'Av. Las Flores 123',
+      distrito: 'Los Olivos',
+      zona: 'Lima Norte',
+      telefono: '01-1111111',
+      celular: '+51 911 111 111',
+      email: 'elamanecer@demo.com',
+      vendedorAsignado: 'Javier Paredes',
+      vendedorId: 'v-1',
+      formaPago: 'Contado',
+      lineaCredito: 0,
+      saldo: 0,
+      activo: true,
+      fechaRegistro: '2025-01-15',
+      observaciones: '',
+    },
+    {
+      id: 'cli-2',
+      codigo: 'CL-0002',
+      razonSocial: 'Minimarket La Esperanza',
+      ruc: '20222222222',
+      tipo: 'Minimarket',
+      direccion: 'Jr. Los Pinos 456',
+      distrito: 'San Martín de Porres',
+      zona: 'Lima Norte',
+      telefono: '01-2222222',
+      celular: '+51 922 222 222',
+      email: 'laesperanza@demo.com',
+      vendedorAsignado: 'Javier Paredes',
+      vendedorId: 'v-1',
+      formaPago: 'Crédito 15',
+      lineaCredito: 5000,
+      saldo: 0,
+      activo: true,
+      fechaRegistro: '2025-02-10',
+      observaciones: '',
+    },
+    {
+      id: 'cli-3',
+      codigo: 'CL-0003',
+      razonSocial: 'Abarrotes El Progreso',
+      ruc: '20333333333',
+      tipo: 'Bodega',
+      direccion: 'Av. El Sol 789',
+      distrito: 'Comas',
+      zona: 'Lima Norte',
+      telefono: '01-3333333',
+      celular: '+51 933 333 333',
+      email: 'elprogreso@demo.com',
+      vendedorAsignado: 'Rosa Cárdenas',
+      vendedorId: 'v-4',
+      formaPago: 'Crédito 30',
+      lineaCredito: 8000,
+      saldo: 0,
+      activo: true,
+      fechaRegistro: '2025-03-05',
+      observaciones: '',
+    },
+  ]);
+  const [empleadosMaestros, setEmpleadosMaestros] = useState<Empleado[]>(INITIAL_VENDEDORES.map((v, i) => ({
+    id: v.id,
+    codigo: `EMP-${String(i + 1).padStart(4, '0')}`,
+    nombres: v.name.split(' ')[0],
+    apellidos: v.name.split(' ').slice(1).join(' '),
+    dni: `7000000${String(i).padStart(2, '0')}`,
+    rol: v.id === 'v-2' || v.id === 'v-6' ? 'Supervisor' : 'Vendedor',
+    cargo: v.id === 'v-2' || v.id === 'v-6' ? 'Supervisor' : 'Vendedor',
+    telefono: v.phone,
+    celular: v.phone,
+    email: `demo${i + 1}@totalcalidad.demo`,
+    zona: v.zone,
+    supervisorId: 'sup-1',
+    supervisorNombre: v.supervisor,
+    fechaIngreso: '2024-01-10',
+    sueldoBase: 1500,
+    comisionPorcentaje: 5,
+    activo: true,
+    direccion: 'Lima, Perú',
+    distrito: v.zone,
+  })));
 
   // Selected Vendedor for VendedorView
-  const [activeVendedor, setActiveVendedor] = useState<Vendedor>(INITIAL_VENDEDORES[0]);
+  const vendedoresInit: Vendedor[] = empleadosMaestros
+    .filter((e) => e.rol === 'Vendedor')
+    .map((e, idx) => ({
+      id: e.id,
+      initials: `${e.nombres[0]}${e.apellidos[0]}`,
+      name: `${e.nombres} ${e.apellidos}`,
+      route: `Ruta Demo-${String(idx + 1).padStart(2, '0')}`,
+      zone: e.zona,
+      supervisor: e.supervisorNombre || 'Supervisor Demo',
+      phone: e.celular || e.telefono,
+      attendanceStatus: 'Presente' as const,
+      checkInTime: '08:00',
+      quotaTarget: 12000 + idx * 500,
+      currentSales: 18400 - idx * 200,
+      completedVisits: 35,
+      totalVisits: 40,
+      brands: { nestle: 40, alicorp: 35, gloria: 25 },
+      categories: { lacteos: 40, abarrotes: 40, golosinas: 20 },
+    }));
+  const [activeVendedor, setActiveVendedor] = useState<Vendedor>(vendedoresInit[0]);
+  const [vendedores, setVendedores] = useState<Vendedor[]>(vendedoresInit);
+  const [alerts, setAlerts] = useState<MesaAlert[]>(INITIAL_ALERTS);
 
   // Modals State
   const [isBroadcastOpen, setIsBroadcastOpen] = useState(false);
@@ -323,6 +443,7 @@ export default function App() {
                   selectedVendedor={activeVendedor}
                   onSelectVendedor={setActiveVendedor}
                   allVendedores={vendedores}
+                  productosMaestros={productosMaestros}
                 />
               )}
 
@@ -350,7 +471,14 @@ export default function App() {
               )}
 
               {currentView === 'maestros' && (
-                <MaestrosView />
+                <MaestrosView
+                  productos={productosMaestros}
+                  setProductos={setProductosMaestros}
+                  clientes={clientesMaestros}
+                  setClientes={setClientesMaestros}
+                  empleados={empleadosMaestros}
+                  setEmpleados={setEmpleadosMaestros}
+                />
               )}
             </>
           )}

@@ -119,11 +119,18 @@ const initialEmpleados: Empleado[] = INITIAL_VENDEDORES.map((v, i) => ({
   distrito: v.zone,
 }));
 
-export const MaestrosView: React.FC = () => {
+export const MaestrosView: React.FC<{
+  productos?: ProductoMaestro[];
+  setProductos?: React.Dispatch<React.SetStateAction<ProductoMaestro[]>>;
+  clientes?: Cliente[];
+  setClientes?: React.Dispatch<React.SetStateAction<Cliente[]>>;
+  empleados?: Empleado[];
+  setEmpleados?: React.Dispatch<React.SetStateAction<Empleado[]>>;
+}> = (props) => {
   const [tab, setTab] = useState<'productos' | 'clientes' | 'empleados'>('productos');
-  const [productos, setProductos] = useState<ProductoMaestro[]>(initialProductos);
-  const [clientes, setClientes] = useState<Cliente[]>(initialClientes);
-  const [empleados, setEmpleados] = useState<Empleado[]>(initialEmpleados);
+  const [productos, setProductos] = useState<ProductoMaestro[]>(props.productos || initialProductos);
+  const [clientes, setClientes] = useState<Cliente[]>(props.clientes || initialClientes);
+  const [empleados, setEmpleados] = useState<Empleado[]>(props.empleados || initialEmpleados);
 
   // Productos
   const [prodForm, setProdForm] = useState<Partial<ProductoMaestro>>({});
@@ -146,12 +153,14 @@ export const MaestrosView: React.FC = () => {
   const saveProducto = () => {
     if (!prodForm.descripcion) return;
     if (prodEditId) {
-      setProductos((p) => p.map((x) => (x.id === prodEditId ? { ...x, ...prodForm } as ProductoMaestro : x)));
+      const updated = productos.map((x) => (x.id === prodEditId ? { ...x, ...prodForm } as ProductoMaestro : x));
+      setProductos(updated);
+      props.setProductos?.(updated);
     } else {
-      setProductos((p) => [
-        ...p,
-        { id: `pm-${Date.now()}`, codigo: prodForm.codigo || '', ...prodForm } as ProductoMaestro,
-      ]);
+      const newProd = { id: `pm-${Date.now()}`, codigo: prodForm.codigo || '', ...prodForm } as ProductoMaestro;
+      const updated = [...productos, newProd];
+      setProductos(updated);
+      props.setProductos?.(updated);
     }
     setShowProdForm(false);
     setProdEditId(null);
@@ -161,12 +170,14 @@ export const MaestrosView: React.FC = () => {
   const saveCliente = () => {
     if (!cliForm.razonSocial) return;
     if (cliEditId) {
-      setClientes((p) => p.map((x) => (x.id === cliEditId ? { ...x, ...cliForm } as Cliente : x)));
+      const updated = clientes.map((x) => (x.id === cliEditId ? { ...x, ...cliForm } as Cliente : x));
+      setClientes(updated);
+      props.setClientes?.(updated);
     } else {
-      setClientes((p) => [
-        ...p,
-        { id: `cli-${Date.now()}`, codigo: cliForm.codigo || `CL-${String(p.length + 1).padStart(4, '0')}`, fechaRegistro: new Date().toISOString().split('T')[0], ...cliForm } as Cliente,
-      ]);
+      const newCli = { id: `cli-${Date.now()}`, codigo: cliForm.codigo || `CL-${String(clientes.length + 1).padStart(4, '0')}`, fechaRegistro: new Date().toISOString().split('T')[0], ...cliForm } as Cliente;
+      const updated = [...clientes, newCli];
+      setClientes(updated);
+      props.setClientes?.(updated);
     }
     setShowCliForm(false);
     setCliEditId(null);
@@ -176,21 +187,23 @@ export const MaestrosView: React.FC = () => {
   const saveEmpleado = () => {
     if (!empForm.nombres) return;
     if (empEditId) {
-      setEmpleados((p) => p.map((x) => (x.id === empEditId ? { ...x, ...empForm } as Empleado : x)));
+      const updated = empleados.map((x) => (x.id === empEditId ? { ...x, ...empForm } as Empleado : x));
+      setEmpleados(updated);
+      props.setEmpleados?.(updated);
     } else {
-      setEmpleados((p) => [
-        ...p,
-        { id: `emp-${Date.now()}`, codigo: empForm.codigo || `EMP-${String(p.length + 1).padStart(4, '0')}`, ...empForm } as Empleado,
-      ]);
+      const newEmp = { id: `emp-${Date.now()}`, codigo: empForm.codigo || `EMP-${String(empleados.length + 1).padStart(4, '0')}`, ...empForm } as Empleado;
+      const updated = [...empleados, newEmp];
+      setEmpleados(updated);
+      props.setEmpleados?.(updated);
     }
     setShowEmpForm(false);
     setEmpEditId(null);
     setEmpForm({});
   };
 
-  const delProducto = (id: string) => confirm('¿Eliminar producto?') && setProductos((p) => p.filter((x) => x.id !== id));
-  const delCliente = (id: string) => confirm('¿Eliminar cliente?') && setClientes((p) => p.filter((x) => x.id !== id));
-  const delEmpleado = (id: string) => confirm('¿Eliminar empleado?') && setEmpleados((p) => p.filter((x) => x.id !== id));
+  const delProducto = (id: string) => { if (confirm('¿Eliminar producto?')) { const updated = productos.filter((x) => x.id !== id); setProductos(updated); props.setProductos?.(updated); } };
+  const delCliente = (id: string) => { if (confirm('¿Eliminar cliente?')) { const updated = clientes.filter((x) => x.id !== id); setClientes(updated); props.setClientes?.(updated); } };
+  const delEmpleado = (id: string) => { if (confirm('¿Eliminar empleado?')) { const updated = empleados.filter((x) => x.id !== id); setEmpleados(updated); props.setEmpleados?.(updated); } };
 
   const filProd = productos.filter((p) =>
     p.descripcion.toLowerCase().includes(searchProd.toLowerCase()) ||
