@@ -108,6 +108,93 @@ export const GerenciaView: React.FC<GerenciaViewProps> = ({ withIGV }) => {
         </div>
       )}
 
+      {/* Desempeño General - Trayectoria a lo largo del tiempo */}
+      <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-4 sm:p-6 rounded-xl shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+          <div>
+            <h2 className="text-base font-bold text-[#191c1e] dark:text-[#f1f5f9]">
+              Trayectoria del Desempeño General
+            </h2>
+            <p className="text-xs text-[#45464d] dark:text-[#cbd5e1]">
+              Evolución consolidada (Facturación, Margen Bruto Ponderado, Fuerza de Ventas Activa y OTIF)
+            </p>
+          </div>
+          <span className="text-[10px] sm:text-xs font-semibold text-[#45464d] dark:text-[#cbd5e1] bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] px-2 py-1 rounded-lg">
+            Últimos 6 meses
+          </span>
+        </div>
+
+        <div className="w-full overflow-x-auto">
+          <svg viewBox="0 0 520 220" className="w-full min-w-[480px] h-[220px]">
+            {/* Grid lines */}
+            <g stroke="#e5e7eb" strokeWidth="1">
+              <line x1="40" y1="20" x2="40" y2="170" />
+              <line x1="40" y1="170" x2="500" y2="170" />
+              <line x1="40" y1="132.5" x2="500" y2="132.5" strokeDasharray="4 4" />
+              <line x1="40" y1="95" x2="500" y2="95" strokeDasharray="4 4" />
+              <line x1="40" y1="57.5" x2="500" y2="57.5" strokeDasharray="4 4" />
+              <line x1="40" y1="20" x2="500" y2="20" strokeDasharray="4 4" />
+            </g>
+
+            {/* Y axis labels */}
+            <g fontSize="10" fill="#64748b" textAnchor="end">
+              <text x="35" y="174">80</text>
+              <text x="35" y="136.5">85</text>
+              <text x="35" y="99">90</text>
+              <text x="35" y="61.5">95</text>
+              <text x="35" y="24">100</text>
+            </g>
+
+            {/* X axis labels */}
+            <g fontSize="10" fill="#64748b" textAnchor="middle">
+              <text x="95" y="190">Ene</text>
+              <text x="170" y="190">Feb</text>
+              <text x="245" y="190">Mar</text>
+              <text x="320" y="190">Abr</text>
+              <text x="395" y="190">May</text>
+              <text x="470" y="190">Jun</text>
+            </g>
+
+            {/* Line - Desempeño General (índice ponderado) */}
+            <polyline
+              points="95,132.5 170,117.5 245,102.5 320,80 395,57.5 470,42.5"
+              fill="none"
+              stroke="#131b2e"
+              strokeWidth="2.5"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
+
+            {/* Data points */}
+            {[
+              { x: 95, y: 132.5, val: '88%' },
+              { x: 170, y: 117.5, val: '90%' },
+              { x: 245, y: 102.5, val: '92%' },
+              { x: 320, y: 80, val: '95%' },
+              { x: 395, y: 57.5, val: '97%' },
+              { x: 470, y: 42.5, val: '98%' },
+            ].map((p, i) => (
+              <g key={i}>
+                <circle cx={p.x} cy={p.y} r="4" fill="#131b2e" stroke="white" strokeWidth="2" />
+                <text x={p.x} y={p.y - 8} fontSize="9" fill="#131b2e" textAnchor="middle" fontWeight="600">
+                  {p.val}
+                </text>
+              </g>
+            ))}
+          </svg>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-4 mt-3 text-[10px] sm:text-xs">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#131b2e]"></span>
+            <span className="text-[#45464d] dark:text-[#cbd5e1]">Índice de Desempeño General</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="text-[#64748b]">Base: 80% | Objetivo: 100%</span>
+          </div>
+        </div>
+      </div>
+
       {/* 4 Executive C-Level Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-5 rounded-xl shadow-xs">

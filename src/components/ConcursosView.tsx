@@ -61,8 +61,6 @@ export const ConcursosView: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState<Concurso>({ ...emptyConcurso, id: `c-${Date.now()}` });
   const [activeTab, setActiveTab] = useState<'concursos' | 'vendedores' | 'productos'>('concursos');
-  const [searchVendedor, setSearchVendedor] = useState('');
-  const [searchProducto, setSearchProducto] = useState('');
 
   const filtered = concursos.filter(
     (c) =>
@@ -130,8 +128,6 @@ export const ConcursosView: React.FC = () => {
       <div className="flex gap-2 bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-2 rounded-xl shadow-xs">
         {[
           { id: 'concursos' as const, label: 'Concursos', count: concursos.length },
-          { id: 'vendedores' as const, label: 'Vendedores', count: INITIAL_VENDEDORES.length },
-          { id: 'productos' as const, label: 'Productos', count: PRODUCTOS.length },
         ].map((t) => (
           <button
             key={t.id}
@@ -384,93 +380,6 @@ export const ConcursosView: React.FC = () => {
       )}
 
       </>
-      )}
-
-      {activeTab === 'vendedores' && (
-        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-4 sm:p-6 rounded-xl shadow-xs overflow-x-auto">
-          <h3 className="font-bold text-base text-[#191c1e] dark:text-[#f1f5f9] mb-4">Lista de Vendedores ({INITIAL_VENDEDORES.length})</h3>
-          <table className="w-full text-xs sm:text-sm min-w-[500px]">
-            <thead>
-              <tr className="border-b border-[#e0e3e5] dark:border-[#334155]">
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">ID</th>
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">Nombre</th>
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">Ruta</th>
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">Zona</th>
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">Supervisor</th>
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">Teléfono</th>
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">Cuota</th>
-              </tr>
-            </thead>
-            <tbody>
-              {INITIAL_VENDEDORES.filter((v) =>
-                v.name.toLowerCase().includes(searchVendedor.toLowerCase()) ||
-                v.route.toLowerCase().includes(searchVendedor.toLowerCase()) ||
-                v.zone.toLowerCase().includes(searchVendedor.toLowerCase())
-              ).map((v) => (
-                <tr key={v.id} className="border-b border-[#e0e3e5] dark:border-[#334155] hover:bg-white dark:bg-[#1e293b]/60">
-                  <td className="py-2 px-2 font-mono text-[10px]">{v.id}</td>
-                  <td className="py-2 px-2 font-semibold text-[#191c1e] dark:text-[#f1f5f9]">{v.initials} {v.name}</td>
-                  <td className="py-2 px-2">{v.route}</td>
-                  <td className="py-2 px-2">{v.zone}</td>
-                  <td className="py-2 px-2 text-[#45464d] dark:text-[#cbd5e1]">{v.supervisor}</td>
-                  <td className="py-2 px-2 font-mono text-[10px]">{v.phone}</td>
-                  <td className="py-2 px-2 font-mono font-bold text-emerald-700">S/. {v.quotaTarget.toLocaleString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="mt-3">
-            <input
-              type="text"
-              value={searchVendedor}
-              onChange={(e) => setSearchVendedor(e.target.value)}
-              placeholder="Buscar vendedor..."
-              className="w-full sm:w-64 text-sm p-2 rounded-lg border border-[#c6c6cd] dark:border-[#475569] bg-white dark:bg-[#1e293b] outline-none"
-            />
-          </div>
-        </div>
-      )}
-
-      {activeTab === 'productos' && (
-        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-4 sm:p-6 rounded-xl shadow-xs overflow-x-auto">
-          <h3 className="font-bold text-base text-[#191c1e] dark:text-[#f1f5f9] mb-4">Lista de Productos ({PRODUCTOS.length})</h3>
-          <table className="w-full text-xs sm:text-sm min-w-[600px]">
-            <thead>
-              <tr className="border-b border-[#e0e3e5] dark:border-[#334155]">
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">ART_ID</th>
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">Proveedor</th>
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">Marca</th>
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">Descripción</th>
-                <th className="text-left py-2 px-2 font-bold text-[#45464d] dark:text-[#cbd5e1]">Venta c/IGV</th>
-              </tr>
-            </thead>
-            <tbody>
-              {PRODUCTOS.filter((p) =>
-                p.descripcion.toLowerCase().includes(searchProducto.toLowerCase()) ||
-                p.proveedor.toLowerCase().includes(searchProducto.toLowerCase()) ||
-                p.marca.toLowerCase().includes(searchProducto.toLowerCase()) ||
-                p.artId.toLowerCase().includes(searchProducto.toLowerCase())
-              ).map((p) => (
-                <tr key={p.artId} className="border-b border-[#e0e3e5] dark:border-[#334155] hover:bg-white dark:bg-[#1e293b]/60">
-                  <td className="py-2 px-2 font-mono text-[10px]">{p.artId}</td>
-                  <td className="py-2 px-2 text-[#45464d] dark:text-[#cbd5e1]">{p.proveedor}</td>
-                  <td className="py-2 px-2 font-semibold">{p.marca}</td>
-                  <td className="py-2 px-2">{p.descripcion}</td>
-                  <td className="py-2 px-2 font-mono font-bold text-emerald-700">S/. {p.ventaConIGV.toLocaleString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="mt-3">
-            <input
-              type="text"
-              value={searchProducto}
-              onChange={(e) => setSearchProducto(e.target.value)}
-              placeholder="Buscar producto..."
-              className="w-full sm:w-64 text-sm p-2 rounded-lg border border-[#c6c6cd] dark:border-[#475569] bg-white dark:bg-[#1e293b] outline-none"
-            />
-          </div>
-        </div>
       )}
 
       {/* Form Modal */}
