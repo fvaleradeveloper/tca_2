@@ -33,31 +33,38 @@ export const Header: React.FC<HeaderProps> = ({
   const [unreadCount, setUnreadCount] = useState(alerts.length);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
-  // Profile data dynamic based on authenticated role
-  const profileData = {
+  const profileData: any = {
     Vendedor: {
-      name: 'Carlos Gomez',
-      initials: 'CG',
-      title: 'Vendedor Preventa · Ruta Norte-A',
-      email: 'carlos.gomez@totalcalidad.pe',
-      scope: 'Ruta Asignada: Los Olivos / SMP',
+      name: 'Vendedor Demo',
+      initials: 'VD',
+      title: 'Vendedor Preventa',
+      email: 'vendedor@demo.com',
+      scope: 'Ruta Asignada',
       badgeBg: 'bg-emerald-50 text-emerald-800',
     },
     Supervisor: {
-      name: 'Carlos Mendoza',
-      initials: 'CM',
-      title: 'Supervisor Operativo · Líder Alfa',
-      email: 'c.mendoza@totalcalidad.pe',
-      scope: 'Mesa de Trabajo: Lima Norte',
+      name: 'Supervisor Demo',
+      initials: 'SD',
+      title: 'Supervisor Operativo',
+      email: 'supervisor@demo.com',
+      scope: 'Mesa de Trabajo',
       badgeBg: 'bg-blue-50 text-blue-800',
     },
     Gerencia: {
-      name: 'Ing. Roberto Thorne',
-      initials: 'RT',
-      title: 'Director Comercial & Operaciones',
-      email: 'r.thorne@totalcalidad.pe',
-      scope: 'Cobertura: Lima Metropolitana',
+      name: 'Gerencia Demo',
+      initials: 'GD',
+      title: 'Director Comercial',
+      email: 'gerencia@demo.com',
+      scope: 'Cobertura Total',
       badgeBg: 'bg-purple-50 text-purple-800',
+    },
+    Cliente: {
+      name: 'Cliente Demo',
+      initials: 'CL',
+      title: 'Cliente',
+      email: 'cliente1@demo.com',
+      scope: 'Portal Cliente',
+      badgeBg: 'bg-amber-50 text-amber-800',
     },
   }[currentRole];
 
@@ -90,6 +97,7 @@ export const Header: React.FC<HeaderProps> = ({
               <option value="Gerencia">Gerencia (Superadmin)</option>
               <option value="Supervisor">Supervisor (Mesa de Trabajo)</option>
               <option value="Vendedor">Vendedor (Ruta Individual)</option>
+              <option value="Cliente">Cliente (Portal)</option>
             </select>
           </div>
 

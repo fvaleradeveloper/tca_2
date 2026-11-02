@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Role, LimaZone, ScreenView, Vendedor, MesaAlert, ProductoMaestro, Cliente, Empleado } from './types';
+import { Role, LimaZone, ScreenView, Vendedor, MesaAlert, ProductoMaestro, Cliente, Empleado, ClienteUsuario, PedidoRapidoCliente, SolicitudVisita } from './types';
 import { INITIAL_VENDEDORES, INITIAL_ALERTS } from './data/mockData';
 import { PRODUCTOS } from './data/productosData';
 import { Sidebar } from './components/Sidebar';
@@ -12,6 +12,7 @@ import { RutasMapasView } from './components/RutasMapasView';
 import { ReportesExportarView } from './components/ReportesExportarView';
 import { ConcursosView } from './components/ConcursosView';
 import { MaestrosView } from './components/MaestrosView';
+import { ClientePortalView } from './components/ClientePortalView';
 import { BroadcastModal } from './components/BroadcastModal';
 import { CallModal } from './components/CallModal';
 import { AttendanceModal } from './components/AttendanceModal';
@@ -281,6 +282,11 @@ export default function App() {
     }));
   const [activeVendedor, setActiveVendedor] = useState<Vendedor>(vendedoresInit[0]);
   const [vendedores, setVendedores] = useState<Vendedor[]>(vendedoresInit);
+  const [clientesUsuarios, setClientesUsuarios] = useState<ClienteUsuario[]>([
+    { id: 'cu-1', clienteId: 'cli-1', email: 'cliente1@demo.com', password: 'demo123', razonSocial: 'Bodega El Amanecer', vendedorId: vendedoresInit[0]?.id || 'emp-1', vendedorAsignado: vendedoresInit[0]?.name || 'Vendedor Demo', zona: vendedoresInit[0]?.zone || 'Lima Norte' },
+  ]);
+  const [pedidosRapidosClientes, setPedidosRapidosClientes] = useState<PedidoRapidoCliente[]>([]);
+  const [solicitudesVisita, setSolicitudesVisita] = useState<SolicitudVisita[]>([]);
   const [alerts, setAlerts] = useState<MesaAlert[]>(INITIAL_ALERTS);
 
   // Modals State
@@ -444,6 +450,11 @@ export default function App() {
                   onSelectVendedor={setActiveVendedor}
                   allVendedores={vendedores}
                   productosMaestros={productosMaestros}
+                  pedidosRapidosClientes={pedidosRapidosClientes.filter(p => p.vendedorId === activeVendedor.id)}
+                  solicitudesVisita={solicitudesVisita.filter(s => s.vendedorId === activeVendedor.id)}
+                  onAjustarPedido={(id, data) => setPedidosRapidosClientes(prev => prev.map(p => p.id === id ? { ...p, ...data, estado: 'ajustado', updatedAt: new Date().toISOString() } : p))}
+                  onConfirmarPedido={(id) => setPedidosRapidosClientes(prev => prev.map(p => p.id === id ? { ...p, estado: 'confirmado', updatedAt: new Date().toISOString() } : p))}
+                  onAtenderSolicitud={(id, estado) => setSolicitudesVisita(prev => prev.map(s => s.id === id ? { ...s, estado } : s))}
                 />
               )}
 
@@ -470,14 +481,53 @@ export default function App() {
                 <ConcursosView />
               )}
 
-              {currentView === 'maestros' && (
-                <MaestrosView
-                  productos={productosMaestros}
-                  setProductos={setProductosMaestros}
-                  clientes={clientesMaestros}
-                  setClientes={setClientesMaestros}
-                  empleados={empleadosMaestros}
-                  setEmpleados={setEmpleadosMaestros}
+              {currentView === 'cliente-portal' && !clienteLogueado && (
+                <div className="max-w-md mx-auto mt-10 bg-[#f2f4f6] dark:bg-[#1e293b] p-6 rounded-xl border border-[#e0e3e5] dark:border-[#334155]">
+                  <h2 className="text-lg font-bold mb-4">Login Cliente</h2>
+                  <input value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} placeholder="Email" className="w-full p-2 mb-2 rounded-lg border border-[#c6c6cd] dark:border-[#475569] bg-white dark:bg-[#1e293b]" />
+                  <input type="password" value={loginPass} onChange={(e) => setLoginPass(e.target.value)} placeholder="Contraseña" className="w-full p-2 mb-2 rounded-lg border border-[#c6c6cd] dark:border-[#475569] bg-white dark:bg-[#1e293b]" />
+                  {loginError && <p className="text-xs text-red-600 mb-2">{loginError}</p>}
+                  <button onClick={() => {
+                    const user = clientesUsuarios.find((u) => u.email === loginEmail && u.password === loginPass);
+                    if (user) { setClienteLogueado(user); setCurrentRole('Cliente'); setLoginError(''); } else { setLoginError('Email o contraseña incorrectos'); }
+                  }} className="w-full py-2 bg-[#131b2e] text-white rounded-lg text-sm font-bold">Ingresar</button>
+                  <p className="text-[10px] text-slate-500 mt-2">Demo: cliente1@demo.com / demo123</p>
+                </div>
+              )}
+              {currentView === 'cliente-portal' && clienteLogueado && (
+                <ClientePortalView
+                  productosMaestros={productosMaestros}
+                  onCrearPedidoRapido={(pedido: any) => {
+                    const newPedido: PedidoRapidoCliente = {
+                      id: `pr-${Date.now()}`,
+                      clienteId: clienteLogueado.clienteId,
+                      clienteUsuarioId: clienteLogueado.id,
+                      vendedorId: clienteLogueado.vendedorId,
+                      razonSocial: clienteLogueado.razonSocial,
+                      items: pedido.items,
+                      observacionesCliente: pedido.observacionesCliente,
+                      total: pedido.total,
+                      estado: 'solicitado',
+                      createdAt: new Date().toISOString(),
+                    };
+                    setPedidosRapidosClientes((prev) => [newPedido, ...prev]);
+                  }}
+                  onSolicitarVisita={(sol: any) => {
+                    const newSol: SolicitudVisita = {
+                      id: `sv-${Date.now()}`,
+                      clienteId: clienteLogueado.clienteId,
+                      clienteUsuarioId: clienteLogueado.id,
+                      vendedorId: clienteLogueado.vendedorId,
+                      razonSocial: clienteLogueado.razonSocial,
+                      fechaPreferida: sol.fechaPreferida,
+                      horaPreferida: sol.horaPreferida,
+                      motivo: sol.motivo,
+                      estado: 'solicitado',
+                      createdAt: new Date().toISOString(),
+                    };
+                    setSolicitudesVisita((prev) => [newSol, ...prev]);
+                  }}
+                  vendedorAsignado={{ id: clienteLogueado.vendedorId, name: clienteLogueado.vendedorAsignado, phone: vendedores.find(v => v.id === clienteLogueado.vendedorId)?.phone || '+51 999 999 999' }}
                 />
               )}
             </>

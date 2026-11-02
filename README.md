@@ -380,7 +380,7 @@ Todas las APIs deben exponerse vía **Oracle REST Data Services (ORDS)** con **P
 [ ] Inactivación lógica (ACTIVO='N') en maestros
 [ ] Pruebas SQL + Postman OK
 ```
-
+https://tca-2.vercel.app/
 ### Requerimientos Técnicos
 
 | Requerimiento | Justificación |

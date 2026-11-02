@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Vendedor, ClientVisit, ProductoMaestro } from '../types';
+import { Vendedor, ClientVisit, ProductoMaestro, PedidoRapidoCliente, SolicitudVisita } from '../types';
 import { CARLOS_GOMEZ_VISITS } from '../data/mockData';
 import { 
   CheckCircle2, 
@@ -12,7 +12,9 @@ import {
   FileText,
   DollarSign,
   Phone,
-  Plus
+  Plus,
+  MessageSquare,
+  Calendar
 } from 'lucide-react';
 
 interface VendedorViewProps {
@@ -21,6 +23,11 @@ interface VendedorViewProps {
   onSelectVendedor: (v: Vendedor) => void;
   allVendedores: Vendedor[];
   productosMaestros?: ProductoMaestro[];
+  pedidosRapidosClientes?: PedidoRapidoCliente[];
+  solicitudesVisita?: SolicitudVisita[];
+  onAjustarPedido?: (id: string, data: Partial<PedidoRapidoCliente>) => void;
+  onConfirmarPedido?: (id: string) => void;
+  onAtenderSolicitud?: (id: string, estado: SolicitudVisita['estado']) => void;
 }
 
 export const VendedorView: React.FC<VendedorViewProps> = ({
@@ -29,6 +36,11 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
   onSelectVendedor,
   allVendedores,
   productosMaestros = [],
+  pedidosRapidosClientes = [],
+  solicitudesVisita = [],
+  onAjustarPedido,
+  onConfirmarPedido,
+  onAtenderSolicitud,
 }) => {
   const [visits, setVisits] = useState<ClientVisit[]>(CARLOS_GOMEZ_VISITS);
   const [selectedVisit, setSelectedVisit] = useState<ClientVisit>(visits[4]); // Abarrotes Doña Juana (in progress)
@@ -74,7 +86,54 @@ export const VendedorView: React.FC<VendedorViewProps> = ({
 
   return (
     <div className="flex flex-col w-full gap-4 pb-24 max-w-full overflow-x-hidden">
-      {/* 1. TOMA DE PEDIDO - Lo primero que ve el vendedor */}
+      {/* Pedidos rápidos de clientes */}
+      {(pedidosRapidosClientes.length > 0 || solicitudesVisita.length > 0) && (
+        <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-4 sm:p-6 rounded-xl shadow-xs w-full">
+          <h3 className="font-bold text-sm sm:text-base mb-3 flex items-center gap-2"><MessageSquare className="w-4 h-4" />Pedidos rápidos / Solicitudes de visita de clientes</h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+            <div>
+              <h4 className="text-xs font-bold mb-2">Pedidos rápidos solicitados</h4>
+              <div className="space-y-2">
+                {pedidosRapidosClientes.map((p) => (
+                  <div key={p.id} className="p-3 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-lg">
+                    <div className="flex justify-between text-xs">
+                      <span className="font-semibold">{p.razonSocial}</span>
+                      <span className={`px-2 py-0.5 rounded-full ${p.estado === 'confirmado' ? 'bg-emerald-100 text-emerald-800' : p.estado === 'ajustado' ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800'}`}>{p.estado}</span>
+                    </div>
+                    <div className="text-[10px] text-slate-500 mt-1">Total solicitado: S/. {p.total.toFixed(2)}</div>
+                    {p.observacionesCliente && <div className="text-[10px] mt-1 italic">Cliente: {p.observacionesCliente}</div>}
+                    <div className="flex gap-2 mt-2">
+                      <button onClick={() => onAjustarPedido?.(p.id, { observacionesVendedor: 'Revisado, ajustar precios/descuentos', descuento: 0 })} className="px-2 py-1 text-[10px] bg-blue-50 text-blue-700 rounded">Ajustar con descuento/oferta</button>
+                      <button onClick={() => onConfirmarPedido?.(p.id)} className="px-2 py-1 text-[10px] bg-emerald-50 text-emerald-700 rounded">Confirmar pedido</button>
+                    </div>
+                  </div>
+                ))}
+                {pedidosRapidosClientes.length === 0 && <p className="text-xs text-slate-500">Sin pedidos rápidos</p>}
+              </div>
+            </div>
+            <div>
+              <h4 className="text-xs font-bold mb-2">Solicitudes de visita</h4>
+              <div className="space-y-2">
+                {solicitudesVisita.map((s) => (
+                  <div key={s.id} className="p-3 bg-white dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] rounded-lg">
+                    <div className="flex justify-between text-xs">
+                      <span className="font-semibold">{s.razonSocial}</span>
+                      <span className="text-[10px]">{s.fechaPreferida} {s.horaPreferida}</span>
+                    </div>
+                    <div className="text-[10px] mt-1">Motivo: {s.motivo}</div>
+                    <div className="flex gap-2 mt-2">
+                      <button onClick={() => onAtenderSolicitud?.(s.id, 'aceptado')} className="px-2 py-1 text-[10px] bg-emerald-50 text-emerald-700 rounded">Aceptar</button>
+                      <button onClick={() => onAtenderSolicitud?.(s.id, 'programado')} className="px-2 py-1 text-[10px] bg-blue-50 text-blue-700 rounded">Programar</button>
+                      <button onClick={() => onAtenderSolicitud?.(s.id, 'rechazado')} className="px-2 py-1 text-[10px] bg-red-50 text-red-700 rounded">Rechazar</button>
+                    </div>
+                  </div>
+                ))}
+                {solicitudesVisita.length === 0 && <p className="text-xs text-slate-500">Sin solicitudes</p>}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="bg-[#f2f4f6] dark:bg-[#1e293b] border border-[#e0e3e5] dark:border-[#334155] p-4 sm:p-6 rounded-xl shadow-xs w-full">
         <div className="flex items-center gap-2 mb-3 sm:mb-4">
           <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-[#131b2e]" />

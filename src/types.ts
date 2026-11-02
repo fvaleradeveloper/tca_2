@@ -1,6 +1,6 @@
-export type Role = 'Gerencia' | 'Supervisor' | 'Vendedor';
+export type Role = 'Gerencia' | 'Supervisor' | 'Vendedor' | 'Cliente';
 export type LimaZone = 'Todas las Zonas' | 'Lima Norte' | 'Lima Sur' | 'Lima Este' | 'Lima Centro';
-export type ScreenView = 'dashboard' | 'vendedor' | 'supervisor' | 'gerencia' | 'mapas' | 'reportes' | 'concursos' | 'maestros';
+export type ScreenView = 'dashboard' | 'vendedor' | 'supervisor' | 'gerencia' | 'mapas' | 'reportes' | 'concursos' | 'maestros' | 'cliente-portal';
 
 export interface Vendedor {
   id: string;
@@ -158,24 +158,43 @@ export interface Cliente {
 }
 
 export type EmpleadoRol = 'Vendedor' | 'Supervisor' | 'Auxiliar' | 'Jefe de Ventas' | 'Cobrador' | 'Logística' | 'Administrativo';
-export interface Empleado {
+export interface ClienteUsuario {
   id: string;
-  codigo: string;
-  nombres: string;
-  apellidos: string;
-  dni: string;
-  rol: EmpleadoRol;
-  cargo: string;
-  telefono: string;
-  celular: string;
+  clienteId: string;
   email: string;
+  password: string;
+  razonSocial: string;
+  vendedorId: string;
+  vendedorAsignado: string;
   zona: string;
-  supervisorId?: string;
-  supervisorNombre?: string;
-  fechaIngreso: string;
-  sueldoBase: number;
-  comisionPorcentaje: number;
-  activo: boolean;
-  direccion: string;
-  distrito: string;
+}
+
+export interface PedidoRapidoCliente {
+  id: string;
+  clienteId: string;
+  clienteUsuarioId: string;
+  vendedorId: string;
+  razonSocial: string;
+  items: Array<{ productoId: string; descripcion: string; cantidad: number; precioUnitario: number; subtotal: number }>;
+  descuento?: number;
+  oferta?: string;
+  observacionesCliente?: string;
+  observacionesVendedor?: string;
+  total: number;
+  estado: 'solicitado' | 'en_revision' | 'ajustado' | 'confirmado' | 'rechazado';
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export interface SolicitudVisita {
+  id: string;
+  clienteId: string;
+  clienteUsuarioId: string;
+  vendedorId: string;
+  razonSocial: string;
+  fechaPreferida: string;
+  horaPreferida: string;
+  motivo: string;
+  estado: 'solicitado' | 'aceptado' | 'rechazado' | 'programado';
+  createdAt: string;
 }
