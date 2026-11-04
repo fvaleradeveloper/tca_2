@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Role, LimaZone, ScreenView, Vendedor, MesaAlert, ProductoMaestro, Cliente, Empleado, ClienteUsuario, PedidoRapidoCliente, SolicitudVisita } from './types';
 import { INITIAL_VENDEDORES, INITIAL_ALERTS } from './data/mockData';
 import { PRODUCTOS } from './data/productosData';
@@ -570,6 +571,8 @@ export default function App() {
         onClose={() => setIsPromptModalOpen(false)}
         promptText={MASTER_PROMPT_TEXT}
       />
+
+      <Analytics />
     </div>
   );
 }
